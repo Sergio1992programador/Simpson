@@ -1,17 +1,13 @@
 <?php
-
+// Inicia la sesión para poder manipularla
 session_start();
+
+// Elimina todas las variables de sesión
 session_unset();
+
+// Destruye la sesión completamente
 session_destroy();
+
+// Redirige al login tras cerrar sesión
 header("Location: login.php");
 exit;
-
-
-/*
-Flujo:
-    session_start() para acceder a la sesión.
-    session_unset() borra todas las variables de sesión.
-    session_destroy() destruye la sesión en el servidor.
-    Redirige al login.php.
-    Clave: asegura que nadie pueda seguir accediendo al dashboard tras cerrar sesión.
-*/

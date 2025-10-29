@@ -1,9 +1,14 @@
 <?php
+// Inicia la sesión para usar variables de sesión
 session_start();
+
+// Incluye el archivo del encabezado de la página
 require_once(__DIR__ . '/components/header.php');
+
+// Incluye el archivo que muestra una tarjeta (card)
 require_once(__DIR__ . '/components/card.php');
 
-
+// Verifica si el usuario ha iniciado sesión (si existe 'user_id')
 $v = isset($_SESSION['user_id']);
 
 
@@ -119,17 +124,26 @@ $cards = [
 </head>
 
 <body>
-    <?php echo render() ?>
-    <main>
-        <section>
-            <div class="container-fluid">
-                <div id="todo"
-                    class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 m-4 justify-content-lg-center">
-                    <?php
-                    foreach ($cards as $section) {
-                        echo card($section, '?f=' . "{$section['id']}");
-                    }
-                    ?>
+   <?php echo render() ?> <!-- Muestra el contenido generado por la función render() -->
+
+<main>
+    <section>
+        <div class="container-fluid"> <!-- Contenedor ancho para el contenido -->
+            <div id="todo"
+                class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 m-4 justify-content-lg-center">
+                <!-- Grid responsivo con separación entre columnas -->
+
+                <?php
+                // Recorre cada elemento en $cards y muestra una tarjeta
+                foreach ($cards as $section) {
+                    // Llama a la función card() pasando los datos y un enlace con el ID
+                    echo card($section, '?f=' . "{$section['id']}");
+                }
+                ?>
+            </div>
+        </div>
+    </section>
+</main>
                 </div>
         </section>
         <article>

@@ -1,11 +1,14 @@
 <?php
+// Inicia la sesión para acceder a variables de sesión
 session_start();
+
+// Incluye el encabezado de la página
 require_once(__DIR__ . '/components/header.php');
 
-// Verificar si el usuario ha iniciado sesión
+// Si el usuario no ha iniciado sesión, redirige al login
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
+    header("Location: login.php"); // Redirección a la página de inicio de sesión
+    exit; // Detiene la ejecución del script
 }
 ?>
 

@@ -1,19 +1,31 @@
 <?php
 
+// Incluye la clase de gestión de usuarios
 require_once "UserLogin.php";
+
+// Incluye la conexión a la base de datos
 require_once(__DIR__ . "/db.php");
 
+// Verifica si la petición es de tipo POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    // Recoge los datos enviados por el formulario
     $nombre = $_POST['nombre'];
     $password = $_POST['password'];
 
+    // Conecta a la base de datos 'simpson_db'
     $pdo = connect("simpson_db");
+
+    // Intenta registrar al usuario con los datos (faltan variables definidas)
     if (Loginuser::register($pdo, $nombre, $apellidos, $email, $telefono, $usuarioNuevo, $password_hash)) {
+        // Si se registra correctamente, muestra mensaje y enlace al login
         echo "Usuario registrado correctamente. <a href='login.php'>Ir al login</a>";
     } else {
+        // Si falla el registro, muestra mensaje de error
         echo "Error: nombre de usuario ya existe o fallo en el registro.";
     }
-    exit;
+
+    exit; // Finaliza el script
 }
 ?>
 

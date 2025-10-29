@@ -1,17 +1,32 @@
 <?php
+// Inicia la sesión para poder usar variables de sesión
 session_start();
+
+// Incluye la clase de autenticación de usuarios
 require_once "Loginuser.php";
+
+// Incluye el encabezado de la página
 require_once(__DIR__ . "/components/header.php");
+
+// Incluye la conexión a la base de datos
 require_once(__DIR__ . "/db.php");
 
+// Recoge los datos del formulario (usuario y contraseña)
 $nombre = $_POST['usuario'] ?? '';
 $password = $_POST['password'] ?? '';
+
+// Conecta a la base de datos 'simpson_db'
 $pdo = connect("simpson_db");
+
+// Intenta autenticar al usuario con los datos ingresados
 $user = Loginuser::authenticate($pdo, $nombre, $password);
 
 if ($user) {
+    // Si la autenticación es correcta, guarda datos en la sesión
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['nombre'] = $user['usuarioNuevo'];
+
+    // Redirige al dashboard
     header("Location: dashboard.php");
     exit;
 }

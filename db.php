@@ -1,25 +1,26 @@
 <?php
+// Función para conectar a la base de datos
 function connect($database, $user = "root", $password = "", $server = "localhost")
 {
-
-
-
     try {
-        /* Crea una conexión a BD y la guardo en $pdo */
+        // Crea una conexión PDO con los datos proporcionados
         $pdo = new PDO("mysql:host=$server;dbname=$database;charset=utf8", $user, $password);
+
+        // Configura PDO para lanzar excepciones si hay errores
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        /* Por defecto, PDO no lanza errores “visibles”; simplemente devuelve false si algo falla.
-        Con setAttribute.... lanzará una excepción PDOException, que podrás capturar con un try...catch y mostrar claramente el mensaje. */
+
+        // Devuelve el objeto de conexión
         return $pdo;
     } catch (PDOException $e) {
+        // Si falla la conexión, muestra el mensaje de error y detiene el script
         die("Error DB: " . $e->getMessage());
     }
 }
 
+// Función para cerrar la conexión (asigna null)
 function disconnect($con)
 {
     $con = null;
 }
-
 
 
