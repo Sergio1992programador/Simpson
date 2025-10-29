@@ -1,9 +1,14 @@
 <?php
+// Inicia la sesión para acceder a variables de sesión
 session_start();
+
+// Incluye el archivo del encabezado de la página
 require_once(__DIR__ . '/components/header.php');
+
+// Incluye el archivo de la tarjeta (card) que se mostrará
 require_once(__DIR__ . '/components/card.php');
 
-
+// Verifica si existe la variable de sesión 'user_id'
 $v = isset($_SESSION['user_id']);
 
 
