@@ -3,10 +3,10 @@
 session_start();
 
 // Incluye el archivo del encabezado de la página
-require_once('components/header.php');
+require_once('views/components/header.php');
 
 // Incluye el archivo de la tarjeta (card) que se mostrará
-require_once(__DIR__ . '/components/card.php');
+require_once('views/components/card.php');
 
 // Verifica si existe la variable de sesión 'user_id'
 $v = isset($_SESSION['user_id']);
@@ -16,32 +16,32 @@ $cards = [
     [
         "id" => "personajes",
         "nombre" => "Personajes",
-        "enlace" => $v ? "views/personajes.php" : "sinverificado.php",
-        "imagen" => "img/personajes1.png",
+        "enlace" => $v ? "http://localhost/lossimpson/views/personajes.php" : "sinverificado.php",
+        "imagen" => "personajes1.png",
         "titulo" => "Todos los personajes",
         "descripcion" => "<p>Aquí, podrás ver a todos los personajes más importantes de Los Simpson, conocer sus historias, curiosidades y descubrir por qué cada uno de ellos ha dejado una huella inolvidable en la cultura popular.</p><br>"
     ],
     [
         "id" => "familias",
         "nombre" => "Familias",
-        "enlace" => $v ? "familias.php" : "sinverificado.php",
-        "imagen" => "img/familias.webp",
+        "enlace" => $v ? "http://localhost/lossimpson/views/familias.php" : "sinverificado.php",
+        "imagen" => "familias.webp",
         "titulo" => "Familias importantes",
         "descripcion" => "<p>Aquí, podrás ver cómo se dividen las familias más importantes de Los Simpson, conocer sus integrantes, sus relaciones y el papel que cada una juega en la historia de la serie. Desde los Simpson hasta los Flanders, cada familia aporta su propio estilo, valores y momentos inolvidables.</p><br>"
     ],
     [
         "id" => "video",
         "nombre" => "Videojuego",
-        "enlace" => $v ? "videojuego.php" : "sinverificado.php",
-        "imagen" => "img/video.png",
+        "enlace" => $v ? "http://localhost/lossimpson/views/videojuego.php" : "sinverificado.php",
+        "imagen" => "video.png",
         "titulo" => "Videojuego de los Simpson",
         "descripcion" => "<p>Aquí, podrás ver a Bart Simpson en plena acción, saltando con su skate. Con su actitud rebelde y su energía imparable, Bart se convierte en el protagonista de esta aventura</p><br>"
     ],
     [
         "id" => "tienda",
         "nombre" => "Tienda Simpson",
-        "enlace" => $v ? "tienda.php" : "sinverificado.php",
-        "imagen" => "img/tienda.png",
+        "enlace" => $v ? "http://localhost/lossimpson/views/tienda.php" : "sinverificado.php",
+        "imagen" => "tienda.png",
         "titulo" => "Tienda de los Simpson",
         "descripcion" => "<p>Aquí, accederás a la tienda donde podrás comprar productos de Los Simpson.</p><br>"
     ]
@@ -57,7 +57,7 @@ $cards = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="views/resources/css/bootstrap.css">
     <script type="text/javascript" src="bootstrap/js/bootstrap.bundle.js" defer></script>
     <meta name="keywords" content="Lá mejor página">
     <meta name="author" content="Sergio Vallejo">

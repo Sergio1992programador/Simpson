@@ -1,6 +1,6 @@
 <?php
 
-require_once('../models/user.php');
+require_once('../models/User.php');
 
 class UserController
 {
@@ -31,8 +31,8 @@ class UserController
         return $this->user->delete($id);
     }
 
-    public function show($id)
+    public function getVerifiedUser($id, $password)
     {
-        return $this->user->find($id);
+        return $this->user->authenticate($id, $password);
     }
 }

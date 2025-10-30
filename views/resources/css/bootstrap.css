@@ -56,7 +56,7 @@ nav:hover {
 } */
 
 body {
-  background-image: url("img/lossimpsonss.jpg");
+  background-image: url("../../../img/lossimpsonss.jpg");
   background-repeat: no-repeat;
   /* no repetir la imagen */
   background-size: cover;

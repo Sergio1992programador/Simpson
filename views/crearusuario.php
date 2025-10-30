@@ -1,15 +1,17 @@
-
+<?php
+include("components/header.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="bootstrap.css">
-    <link rel="stylesheet" href="formulario.css">
-    <script type="text/javascript" src="bootstrap/js/bootstrap.bundle.js" defer></script>
+    <link rel="stylesheet" href="resources/css/bootstrap.css">
+    <link rel="stylesheet" href="resources/css/formulario.css">
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.bundle.js" defer></script>
     <meta name="keywords" content="Lá mejor página">
     <meta name="author" content="Sergio Vallejo">
     <title>Personajes</title>

@@ -39,7 +39,7 @@
 function card(array $data, string $parametros = ''): string
 {
     $direccion = "{$data['enlace']}" . "{$parametros}";
-    $i_path = "../img/";
+    $i_path = "../lossimpson/img/";
     $imagen = $i_path . $data['imagen'];
     return "
         <div class='col-sm-10 m-3' id='{$data['id']}' onclick=\"window.location.href='{$direccion}'\">

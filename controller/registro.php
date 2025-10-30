@@ -4,7 +4,7 @@
 require_once "UserLogin.php";
 
 // Incluye la conexión a la base de datos
-require_once(__DIR__ . "/db.php");
+require_once(__DIR__ . "/dataBase.php");
 
 // Verifica si la petición es de tipo POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
