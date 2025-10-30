@@ -3,7 +3,7 @@
 session_start();
 
 // Incluye el archivo del encabezado de la página
-require_once(__DIR__ . '/components/header.php');
+require_once('components/header.php');
 
 // Incluye el archivo de la tarjeta (card) que se mostrará
 require_once(__DIR__ . '/components/card.php');
@@ -16,7 +16,7 @@ $cards = [
     [
         "id" => "personajes",
         "nombre" => "Personajes",
-        "enlace" => $v ? "personajes.php" : "sinverificado.php",
+        "enlace" => $v ? "views/personajes.php" : "sinverificado.php",
         "imagen" => "img/personajes1.png",
         "titulo" => "Todos los personajes",
         "descripcion" => "<p>Aquí, podrás ver a todos los personajes más importantes de Los Simpson, conocer sus historias, curiosidades y descubrir por qué cada uno de ellos ha dejado una huella inolvidable en la cultura popular.</p><br>"

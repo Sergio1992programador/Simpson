@@ -39,14 +39,15 @@
 function card(array $data, string $parametros = ''): string
 {
     $direccion = "{$data['enlace']}" . "{$parametros}";
-
+    $i_path = "../img/";
+    $imagen = $i_path . $data['imagen'];
     return "
         <div class='col-sm-10 m-3' id='{$data['id']}' onclick=\"window.location.href='{$direccion}'\">
             <h3>{$data['nombre']}</h3>
             <div style='display: flex; justify-content: center; align-items: center; margin-bottom: 10px;'>
                 <img 
                     id='{$data['id']}-image' 
-                    src='{$data['imagen']}' 
+                    src='{$imagen}' 
                     alt='{$data['nombre']}' 
                     style='height: 200px; object-fit: cover;' 
                 />

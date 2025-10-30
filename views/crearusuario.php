@@ -1,36 +1,3 @@
-<?php
-// Incluye la clase para manejar usuarios
-require_once "Loginuser.php";
-// Incluye el encabezado HTML
-require_once(__DIR__ . "/components/header.php");
-// Conecta con la base de datos
-require_once(__DIR__ . "/db.php");
-
-// Verifica si el formulario fue enviado por POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Recoge los datos del formulario
-    $nombre = $_POST['nombre'];
-    $password_hash = $_POST['password'];
-    $apellidos = $_POST['apellidos'];
-    $telefono = $_POST['numero'];
-    $email = $_POST['email'];
-    $usuarioNuevo = $_POST['usuarioNuevo'];
-
-    // Conecta a la base de datos 'simpson_db'
-    $pdo = connect("simpson_db");
-
-    // Intenta registrar el nuevo usuario
-    if (Loginuser::register($pdo, $nombre, $apellidos, $email, $telefono, $usuarioNuevo, $password_hash)) {
-        // Registro exitoso
-        echo "Usuario registrado correctamente. <a href='login.php'>Ir al login</a>";
-    } else {
-        // Fallo en el registro
-        echo "Error: nombre de usuario ya existe o fallo en el registro.";
-    }
-    // Finaliza el script
-    exit;
-}
-?>
 
 <!DOCTYPE html>
 <html lang="es">
