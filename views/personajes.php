@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once('../components/header.php');
+require_once('../views/components/header.php');
 require_once('../controller/PersonajesController.php');
-require_once('../components/card.php');
+require_once('../views/components/card.php');
 
 $controller = new PersonajesController();
 
@@ -17,7 +17,7 @@ $personajes = $controller->index();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="manifest" href="../manifest.json">
-    <link rel="stylesheet" href="../bootstrap.css">
+    <link rel="stylesheet" href="../views/resources/css/bootstrap.css">
     <script type="text/javascript" src="../bootstrap/js/bootstrap.bundle.js" defer></script>
     <meta name="keywords" content="Lá mejor página">
     <meta name="author" content="Sergio Vallejo">
@@ -34,6 +34,7 @@ $personajes = $controller->index();
                 <div id="character-container"
                     class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 m-4 justify-content-lg-center">
                     <?php foreach ($personajes as $person) {
+                        $person['enlace'] = "../img/" . $person['enlace'];
                         echo card($person);
                     }
                     ?>
@@ -51,7 +52,7 @@ $personajes = $controller->index();
     <script>
         // Registrar Service Worker
         // if ("serviceWorker" in navigator) {
-        //     navigator.serviceWorker.register("/bootstrap/index.html")
+        //     navigator.serviceWorker.register("/lossimpson/index.html")
         //         .then(reg => console.log("Service Worker registrado:", reg))
         //         .catch(err => console.error("Error registrando Service Worker:", err));
         // }

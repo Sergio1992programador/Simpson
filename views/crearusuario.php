@@ -85,7 +85,7 @@ include("components/header.php");
     <script>
         // Registrar Service Worker
         // if ('serviceWorker' in navigator) {
-        //     navigator.serviceWorker.register("/bootstrap/index.html")
+        //     navigator.serviceWorker.register("/lossimpson/index.html")
         //         .then(reg => console.log('Service Worker registrado:', reg))
         //         .catch(err => console.error('Error registrando Service Worker:', err));
         // }

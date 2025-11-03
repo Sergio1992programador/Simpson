@@ -1,12 +1,12 @@
 <?php
 // Incluye el archivo de conexión a la base de datos
-require_once(__DIR__ . "/db.php");
+require_once(__DIR__ . "/dataBase.php");
 
 // Indica que la respuesta será en formato JSON
 header("Content-Type: application/json");
 
 // Conecta a la base de datos 'simpson_db'
-$pdo = connect("simpson_db");
+$pdo = new Database()->getConnection();
 
 // Obtiene el parámetro 'f' de la URL (ID de familia), si existe
 $familiaId = isset($_GET['f']) ? intval($_GET['f']) : null;

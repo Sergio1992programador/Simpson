@@ -117,41 +117,41 @@ $cards = [
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="bootstrap.css">
-    <script type="text/javascript" src="bootstrap/js/bootstrap.bundle.js" defer></script>
+    <script type="text/javascript" src="lossimpson/js/bootstrap.bundle.js" defer></script>
     <meta name="keywords" content="Lá mejor página">
     <meta name="author" content="Sergio Vallejo">
     <title>Personajes</title>
 </head>
 
 <body>
-   <?php echo render() ?> <!-- Muestra el contenido generado por la función render() -->
+    <?php echo render() ?> <!-- Muestra el contenido generado por la función render() -->
 
-<main>
-    <section>
-        <div class="container-fluid"> <!-- Contenedor ancho para el contenido -->
-            <div id="todo"
-                class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 m-4 justify-content-lg-center">
-                <!-- Grid responsivo con separación entre columnas -->
+    <main>
+        <section>
+            <div class="container-fluid"> <!-- Contenedor ancho para el contenido -->
+                <div id="todo"
+                    class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 m-4 justify-content-lg-center">
+                    <!-- Grid responsivo con separación entre columnas -->
 
-                <?php
-                // Recorre cada elemento en $cards y muestra una tarjeta
-                foreach ($cards as $section) {
-                    // Llama a la función card() pasando los datos y un enlace con el ID
-                    echo card($section, '?f=' . "{$section['id']}");
-                }
-                ?>
-            </div>
-        </div>
-    </section>
-</main>
+                    <?php
+                    // Recorre cada elemento en $cards y muestra una tarjeta
+                    foreach ($cards as $section) {
+                        // Llama a la función card() pasando los datos y un enlace con el ID
+                        echo card($section, '?f=' . "{$section['id']}");
+                    }
+                    ?>
                 </div>
+            </div>
         </section>
-        <article>
+    </main>
+    </div>
+    </section>
+    <article>
 
-        </article>
-        <aside>
+    </article>
+    <aside>
 
-        </aside>
+    </aside>
     </main>
     <footer>
         <strong>&copy; Todos los derechos reservados Sergio 2025</strong>

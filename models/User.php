@@ -57,14 +57,14 @@ class User
 
     public function authenticate($nombre, $password)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM " . $this->table . " WHERE nombre = ?");
+        echo "{$nombre}" . "{$password}";
+        $stmt = $this->conn->prepare("SELECT * FROM " . $this->table . " WHERE nombre_usuario = ?");
         $stmt->execute([$nombre]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
+        echo "{$user['id']}";
         if ($user && password_verify($password, $user['password_hash'])) {
             return $user;
         }
-
         return false;
     }
 }

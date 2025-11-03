@@ -29,7 +29,7 @@ if ($user) {
     $_SESSION['nombre'] = $user['usuarioNuevo'];
 
     // Redirige al panel principal (dashboard)
-    header("Location: dashboard.php");
+    header("Location: /lossimpson/dashboard.php");
     exit; // Finaliza el script
 }
 ?>
@@ -81,7 +81,7 @@ if ($user) {
                 Usuario o contraseña incorrectos
             </label>
             <button>
-                <a id="enlace" href="login.php" style="text-decoration: none; color: inherit;">Volver</a>
+                <a id="enlace" href="../views/login.php" style="text-decoration: none; color: inherit;">Volver</a>
             </button>
         </form>
     </main>

@@ -38,7 +38,7 @@ include(__DIR__ . "/components/header.php");
                                 <button type="reset">Limpiar</button><br><br>
                             </div>
                             <div class="centrado">
-                                <button><a id="enlace" href="views/crearusuario.php">Crear Usuario</a></button>
+                                <button><a id="enlace" href="crearusuario.php">Crear Usuario</a></button>
                             </div>
                         </fieldset><br>
                     </form>
@@ -56,7 +56,7 @@ include(__DIR__ . "/components/header.php");
     <script>
         // Registrar Service Worker
         // if ("serviceWorker" in navigator) {
-        //     navigator.serviceWorker.register("/bootstrap/index.html")
+        //     navigator.serviceWorker.register("/lossimpson/index.html")
         //         .then(reg => console.log("Service Worker registrado:", reg))
         //         .catch(err => console.error("Error registrando Service Worker:", err));
         // }
