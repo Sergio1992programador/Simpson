@@ -9,5 +9,5 @@ session_unset();
 session_destroy();
 
 // Redirige al login tras cerrar sesión
-header("Location: login.php");
+header("Location:../views/login.php");
 exit;

@@ -1,5 +1,27 @@
 <?php
-include("components/header.php");
+
+require_once "../models/User.php";
+require_once(__DIR__ . "/components/header.php");
+require_once "../config/dataBase.php";
+$v = new Database();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nombre = $_POST['nombre'];
+    $password_hash = $_POST['password_hash'];
+    $apellidos = $_POST['apellidos'];
+    $telefono = $_POST['numero'];
+    $email = $_POST['email'];
+    $usuarioNuevo = $_POST['usuario_nuevo'];
+
+    $pdo = $v->getConnection();
+    if (User::register($pdo, $nombre, $apellidos, $email, $telefono, $usuarioNuevo, $password_hash)) {
+        header('Location: ../dashboard.php');
+        exit;
+    } else {
+        echo "Error: nombre de usuario ya existe o fallo en el registro.";
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,7 +46,7 @@ include("components/header.php");
             <div class="container-fluid">
                 <div id="character-container"
                     class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 m-4 justify-content-lg-center">
-                    <form method="POST" id="registroForm">
+                    <form action="#" method="post" id="registroForm">
                         <fieldset>
                             <legend>Datos de usuario</legend>
 
@@ -46,14 +68,14 @@ include("components/header.php");
                             <br>
                             <input type="number" name="numero" id="numero" placeholder="Ponga su teléfono" required>
                             <br>
-                            <label for="usuarioNuevo" name="usuarioNuevo" id="usuarioNuevo">Usuario nuevo:</label>
+                            <label for="usuarioNuevo" name="usuario_nuevo" id="usuarioNuevo">Usuario nuevo:</label>
                             <br>
-                            <input type="text" name="usuarioNuevo" id="usuarioNuevo" placeholder="Nombre del Usuario"
+                            <input type="text" name="usuario_nuevo" id="usuarioNuevo" placeholder="Nombre del Usuario"
                                 required>
                             <br>
-                            <label for="password" name="password" id="password">Contraseña:</label>
+                            <label for="password" name="password_hash" id="password">Contraseña:</label>
                             <br>
-                            <input type="password" name="password" id="password" placeholder="Ponga su contraseña"
+                            <input type="password" name="password_hash" id="password" placeholder="Ponga su contraseña"
                                 required>
                             <br>
                             <br>

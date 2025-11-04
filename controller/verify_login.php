@@ -26,7 +26,7 @@ $user = $userController->getVerifiedUser($id, $password);
 if ($user) {
     // Si la autenticación es correcta, guarda datos del usuario en la sesión
     $_SESSION['user_id'] = $user['id'];
-    $_SESSION['nombre'] = $user['usuarioNuevo'];
+    $_SESSION['nombre'] = $user['usuario_nuevo'];
 
     // Redirige al panel principal (dashboard)
     header("Location: /lossimpson/dashboard.php");

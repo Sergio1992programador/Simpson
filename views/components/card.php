@@ -39,8 +39,10 @@
 function card(array $data, string $parametros = ''): string
 {
     $direccion = "{$data['enlace']}" . "{$parametros}";
-    $i_path = "../lossimpson/img/";
-    $imagen = $i_path . $data['imagen'];
+
+    // Ruta absoluta desde la raíz del servidor web
+    $imagen = "/lossimpson/img/" . $data['imagen'];
+
     return "
         <div class='col-sm-10 m-3' id='{$data['id']}' onclick=\"window.location.href='{$direccion}'\">
             <h3>{$data['nombre']}</h3>

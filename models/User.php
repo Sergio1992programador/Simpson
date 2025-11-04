@@ -37,16 +37,33 @@ class User
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public static function register($pdo, $nombre, $apellidos, $email, $telefono, $usuarioNuevo, $password)
+    {
+        // Verificar si el usuario ya existe
+        $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE nombre_usuario = ?");
+        $stmt->execute([$usuarioNuevo]);
+        if ($stmt->fetch()) {
+            return false; // Usuario ya existe
+        }
+
+        // Hashear la contraseña
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+        // Insertar nuevo usuario
+        $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, apellidos, email, telefono, nombre_usuario, password_hash) VALUES (?, ?, ?, ?, ?, ?)");
+        return $stmt->execute([$nombre, $apellidos, $email, $telefono, $usuarioNuevo, $password_hash]);
+    }
+
     public function create($data)
     {
-        $stmt = $this->conn->prepare("INSERT INTO " . $this->table . " (nombre, apellidos, email, telefono, nombreUsuario, password) VALUES (?, ?, ?, ?, ?, ?)");
-        return $stmt->execute([$data['nombre'], $data['apellidos'], $data['email'], $data['telefono'], $data['nombreUsuario'], $data['password']]);
+        $stmt = $this->conn->prepare("INSERT INTO " . $this->table . " (nombre, apellidos, email, telefono, nombre_usuario, password_hash) VALUES (?, ?, ?, ?, ?, ?)");
+        return $stmt->execute([$data['nombre'], $data['apellidos'], $data['email'], $data['telefono'], $data['nombre_usuario'], $data['password_hash']]);
     }
 
     public function update($id, $data)
     {
         $stmt = $this->conn->prepare("UPDATE " . $this->table . " SET nombre = ?, apellidos = ?, email = ?, telefono = ?, nombreUsuario = ?, password = ?, = ? WHERE id = ?");
-        return $stmt->execute([$data['nombre'], $data['apellidos'], $data['email'], $data['telefono'], $data['nombreUsuario'], $data['password'], $id]);
+        return $stmt->execute([$data['nombre'], $data['apellidos'], $data['email'], $data['telefono'], $data['nombre_usuario'], $data['password_hash'], $id]);
     }
 
     public function delete($id)
@@ -57,14 +74,16 @@ class User
 
     public function authenticate($nombre, $password)
     {
-        echo "{$nombre}" . "{$password}";
+        // Preparar la consulta para buscar el usuario por nombre de usuario
         $stmt = $this->conn->prepare("SELECT * FROM " . $this->table . " WHERE nombre_usuario = ?");
         $stmt->execute([$nombre]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        echo "{$user['id']}";
+
+        // Verificar si se encontró el usuario y si la contraseña coincide
         if ($user && password_verify($password, $user['password_hash'])) {
             return $user;
         }
+
         return false;
     }
 }

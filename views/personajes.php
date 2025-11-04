@@ -34,10 +34,10 @@ $personajes = $controller->index();
                 <div id="character-container"
                     class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 m-4 justify-content-lg-center">
                     <?php foreach ($personajes as $person) {
-                        $person['enlace'] = "../img/" . $person['enlace'];
+                        // Ruta absoluta desde la raíz del servidor web
+                        $person['enlace'] = "/lossimpson/img/" . $person['enlace'];
                         echo card($person);
-                    }
-                    ?>
+                    } ?>
                 </div>
             </div>
         </section>

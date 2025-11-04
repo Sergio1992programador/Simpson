@@ -5,7 +5,7 @@ function render()
     global $sesion; // Accede a la variable global dentro de la función
 
     $logoutItem = $sesion
-        ? "<li class='nav-item'><a class='nav-link' href='http://localhost/lossimpson/views/logout.php'>Cerrar sesión</a></li>"
+        ? "<li class='nav-item'><a class='nav-link' href='http://localhost/lossimpson/controller/logout.php'>Cerrar sesión</a></li>"
         : "<li class='nav-item'><a class='nav-link' href='http://localhost/lossimpson/views/login.php'>Iniciar sesión</a></li>";
 
     return "
