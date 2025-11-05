@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = UserController::getVerifiedUser($data['nombre'], $data['password_hash']);
         // Guardar datos en la sesión
         $_SESSION['nombre'] = $user['usuario_nuevo'];
-        $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_id'] = $user['id'];
         $_SESSION['usuario'] = [
             'nombre' => $data['nombre'],
             'apellidos' => $data['apellidos'],
