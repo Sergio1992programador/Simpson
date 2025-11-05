@@ -26,8 +26,13 @@ class PersonajesController
         return Personaje::delete($id);
     }
 
-    public function show($id)
+    public static function show($id)
     {
         return Personaje::find($id);
+    }
+
+    public static function findByFamily($familyId)
+    {
+        return Personaje::findByFamily($familyId);
     }
 }

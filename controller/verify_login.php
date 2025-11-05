@@ -5,20 +5,12 @@ session_start();
 // Incluye el encabezado de la página
 require_once('../views/components/header.php');
 
-// Incluye la conexión a la base de datos
-require_once('../config/dataBase.php');
-
 // Incluye la clase que gestiona el login de usuarios
 require_once "UserController.php";
 
 // Recoge los datos del formulario (usuario y contraseña)
 $id = $_POST['usuario'] ?? '';
 $password = $_POST['password'] ?? '';
-
-$database = new Database();
-// Conecta a la base de datos 'simpson_db'
-$pdo = $database->getConnection();
-
 // Intenta autenticar al usuario con los datos ingresados
 $user = UserController::getVerifiedUser($id, $password);
 
@@ -77,6 +69,7 @@ if ($user) {
                     border-radius: 10px;
                     display: inline-block;
                 ">
+                <!-- $mensajeError -->
                 Usuario o contraseña incorrectos
             </label>
             <button>

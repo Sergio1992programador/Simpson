@@ -42,4 +42,16 @@ class Personaje
         $stmt = $conn->prepare("DELETE FROM " . self::$table . " WHERE id = ?");
         return $stmt->execute([$id]);
     }
+
+    public static function findByFamilyId($familyId)
+    {
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT p.* 
+            FROM personajes p
+            INNER JOIN personajes_familias pf ON p.id = pf.personaje_id
+            WHERE pf.familia_id = p.familia_id");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
 }

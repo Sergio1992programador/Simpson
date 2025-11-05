@@ -35,6 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: ../dashboard.php');
         exit;
     } else {
+
+        // $mensaje_error = "---";
         header('Location: ../controller/verify_login2.php');
     }
 }
