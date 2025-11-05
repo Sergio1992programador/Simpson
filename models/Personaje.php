@@ -4,52 +4,42 @@ require_once('../config/dataBase.php');
 
 class Personaje
 {
-    private $conn;
-    private $table = "personajes";  // ***
+    private static $table = "personajes";  // ***
 
-    public $id;
-    public $nombre;
-    public $enlace;
-    public $imagen;
-    public $titulo;
-    public $descripcion;
-
-
-    public function __construct()
+    public static function all()
     {
-        $database = new Database();
-        $this->conn = $database->getConnection();
-    }
-
-    public function all()
-    {
-        $stmt = $this->conn->prepare("SELECT * FROM " . $this->table);
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT * FROM " . self::$table);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function find($id)
+    public static function find($id)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM " . $this->table . " WHERE id = ?");
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT * FROM " . self::$table . " WHERE id = ?");
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($data)
+    public static function create($data)
     {
-        $stmt = $this->conn->prepare("INSERT INTO " . $this->table . " (nombre, enlace, imagen, titulo, descripcion) VALUES (?, ?, ?, ?, ?)");
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("INSERT INTO " . self::$table . " (nombre, enlace, imagen, titulo, descripcion) VALUES (?, ?, ?, ?, ?)");
         return $stmt->execute([$data['nombre'], $data['enlace'], $data['imagen'], $data['titulo'], $data['descripcion']]);
     }
 
-    public function update($id, $data)
+    public static function update($id, $data)
     {
-        $stmt = $this->conn->prepare("UPDATE " . $this->table . " SET nombre = ?, enlace = ?, imagen = ?, titulo = ?, descripcion = ?, WHERE id = ?");
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("UPDATE " . self::$table . " SET nombre = ?, enlace = ?, imagen = ?, titulo = ?, descripcion = ?, WHERE id = ?");
         return $stmt->execute([$data['nombre'], $data['enlace'], $data['imagen'], $data['titulo'], $data['descripcion'], $id]);
     }
 
-    public function delete($id)
+    public static function delete($id)
     {
-        $stmt = $this->conn->prepare("DELETE FROM " . $this->table . " WHERE id = ?");
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("DELETE FROM " . self::$table . " WHERE id = ?");
         return $stmt->execute([$id]);
     }
 }

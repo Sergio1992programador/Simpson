@@ -1,28 +1,45 @@
 <?php
+session_start(); // Inicia la sesión
 
 require_once "../models/User.php";
 require_once(__DIR__ . "/components/header.php");
 require_once "../config/dataBase.php";
+require_once "../controller/UserController.php";
 $v = new Database();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nombre = $_POST['nombre'];
-    $password_hash = $_POST['password_hash'];
-    $apellidos = $_POST['apellidos'];
-    $telefono = $_POST['numero'];
-    $email = $_POST['email'];
-    $usuarioNuevo = $_POST['usuario_nuevo'];
 
-    $pdo = $v->getConnection();
-    if (User::register($pdo, $nombre, $apellidos, $email, $telefono, $usuarioNuevo, $password_hash)) {
+    $data = [
+        'nombre' => $_POST['nombre'],
+        'apellidos' => $_POST['apellidos'],
+        'email' => $_POST['email'],
+        'telefono' => $_POST['numero'],
+        'nombre_usuario' => $_POST['usuario_nuevo'],
+        'password_hash' => $_POST['password_hash']
+    ];
+
+    if (UserController::create($data)) {
+        $user = UserController::getVerifiedUser($data['nombre'], $data['password_hash']);
+        // Guardar datos en la sesión
+        $_SESSION['nombre'] = $user['usuario_nuevo'];
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['usuario'] = [
+            'nombre' => $data['nombre'],
+            'apellidos' => $data['apellidos'],
+            'email' => $data['email'],
+            'telefono' => $data['telefono'],
+            'usuario' => $data['nombre_usuario']
+        ];
+
+
         header('Location: ../dashboard.php');
         exit;
     } else {
-        echo "Error: nombre de usuario ya existe o fallo en el registro.";
+        header('Location: ../controller/verify_login2.php');
     }
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 

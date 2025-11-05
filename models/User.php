@@ -4,78 +4,59 @@ require_once('../config/dataBase.php');
 
 class User
 {
-    private $conn;
-    private $table = "usuarios";  // ***
+    private static $table = "usuarios";  // ***
 
-    public $id;
-    public $nombre;
-    public $apellidos;
-    public $email;
-    public $telefono;
-    public $nombreUsuario;
-    public $password;
-
-
-
-    public function __construct()
+    public static function all()
     {
-        $database = new Database();
-        $this->conn = $database->getConnection();
-    }
-
-    public function all()
-    {
-        $stmt = $this->conn->prepare("SELECT * FROM " . $this->table);
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT * FROM " . self::$table);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function find($id)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM " . $this->table . " WHERE id = ?");
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT * FROM " . self::$table . " WHERE id = ?");
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function register($pdo, $nombre, $apellidos, $email, $telefono, $usuarioNuevo, $password)
+    public static function create($data)
     {
+        $conn = Database::getConnection();
         // Verificar si el usuario ya existe
-        $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE nombre_usuario = ?");
-        $stmt->execute([$usuarioNuevo]);
+        $stmt = $conn->prepare("SELECT * FROM " . self::$table . " WHERE nombre_usuario = ?");
+        $stmt->execute([$data['nombre_usuario']]);
         if ($stmt->fetch()) {
             return false; // Usuario ya existe
         }
 
         // Hashear la contraseña
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
-        // Insertar nuevo usuario
-        $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, apellidos, email, telefono, nombre_usuario, password_hash) VALUES (?, ?, ?, ?, ?, ?)");
-        return $stmt->execute([$nombre, $apellidos, $email, $telefono, $usuarioNuevo, $password_hash]);
+        $password_hash = password_hash($data['password_hash'], PASSWORD_DEFAULT);
+        $stmt = $conn->prepare("INSERT INTO " . self::$table . " (nombre, apellidos, email, telefono, nombre_usuario, password_hash) VALUES (?, ?, ?, ?, ?, ?)");
+        return $stmt->execute([$data['nombre'], $data['apellidos'], $data['email'], $data['telefono'], $data['nombre_usuario'], $password_hash]);
     }
 
-    public function create($data)
+    public static function update($id, $data)
     {
-        $stmt = $this->conn->prepare("INSERT INTO " . $this->table . " (nombre, apellidos, email, telefono, nombre_usuario, password_hash) VALUES (?, ?, ?, ?, ?, ?)");
-        return $stmt->execute([$data['nombre'], $data['apellidos'], $data['email'], $data['telefono'], $data['nombre_usuario'], $data['password_hash']]);
-    }
-
-    public function update($id, $data)
-    {
-        $stmt = $this->conn->prepare("UPDATE " . $this->table . " SET nombre = ?, apellidos = ?, email = ?, telefono = ?, nombreUsuario = ?, password = ?, = ? WHERE id = ?");
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("UPDATE " . self::$table . " SET nombre = ?, apellidos = ?, email = ?, telefono = ?, nombreUsuario = ?, password = ? WHERE id = ?");
         return $stmt->execute([$data['nombre'], $data['apellidos'], $data['email'], $data['telefono'], $data['nombre_usuario'], $data['password_hash'], $id]);
     }
 
-    public function delete($id)
+    public static function delete($id)
     {
-        $stmt = $this->conn->prepare("DELETE FROM " . $this->table . " WHERE id = ?");
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("DELETE FROM " . self::$table . " WHERE id = ?");
         return $stmt->execute([$id]);
     }
 
-    public function authenticate($nombre, $password)
+    public static function authenticate($nombre, $password)
     {
+        $conn = Database::getConnection();
         // Preparar la consulta para buscar el usuario por nombre de usuario
-        $stmt = $this->conn->prepare("SELECT * FROM " . $this->table . " WHERE nombre_usuario = ?");
+        $stmt = $conn->prepare("SELECT * FROM " . self::$table . " WHERE nombre_usuario = ?");
         $stmt->execute([$nombre]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 

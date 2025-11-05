@@ -4,35 +4,30 @@ require_once('../models/User.php');
 
 class UserController
 {
-    private $user;
 
-    public function __construct()
+
+    public static function index()
     {
-        $this->user = new User();
+        return User::all();
     }
 
-    public function index()
+    public static function create($data)
     {
-        return $this->user->all();
+        return User::create($data);
     }
 
-    public function create($data)
+    public static function edit($id, $data)
     {
-        return $this->user->create($data);
+        return User::update($id, $data);
     }
 
-    public function edit($id, $data)
+    public static function delete($id)
     {
-        return $this->user->update($id, $data);
+        return User::delete($id);
     }
 
-    public function delete($id)
+    public static function getVerifiedUser($id, $password)
     {
-        return $this->user->delete($id);
-    }
-
-    public function getVerifiedUser($id, $password)
-    {
-        return $this->user->authenticate($id, $password);
+        return User::authenticate($id, $password);
     }
 }

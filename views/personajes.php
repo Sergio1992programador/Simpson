@@ -4,9 +4,7 @@ require_once('../views/components/header.php');
 require_once('../controller/PersonajesController.php');
 require_once('../views/components/card.php');
 
-$controller = new PersonajesController();
-
-$personajes = $controller->index();
+$personajes = PersonajesController::index();
 
 ?>
 <!DOCTYPE html>

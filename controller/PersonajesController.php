@@ -4,35 +4,30 @@ require_once('../models/Personaje.php');
 
 class PersonajesController
 {
-    private $personajes;
 
-    public function __construct()
+
+    public static function index()
     {
-        $this->personajes = new Personaje();
+        return Personaje::all();
     }
 
-    public function index()
+    public static function create($data)
     {
-        return $this->personajes->all();
+        return Personaje::create($data);
     }
 
-    public function create($data)
+    public static function edit($id, $data)
     {
-        return $this->personajes->create($data);
+        return Personaje::update($id, $data);
     }
 
-    public function edit($id, $data)
+    public static function delete($id)
     {
-        return $this->personajes->update($id, $data);
-    }
-
-    public function delete($id)
-    {
-        return $this->personajes->delete($id);
+        return Personaje::delete($id);
     }
 
     public function show($id)
     {
-        return $this->personajes->find($id);
+        return Personaje::find($id);
     }
 }

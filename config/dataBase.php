@@ -2,26 +2,25 @@
 
 class Database
 {
-    private $host = "localhost";
-    private $db_name = "simpson_db";
-    private $username = "root";
-    private $password = "";
-    public $conn;
+    private static $host = "localhost";
+    private static $db_name = "simpson_db";
+    private static $username = "root";
+    private static $password = "";
 
-    public function getConnection()
+    public static function getConnection()
     {
-        $this->conn = null;
+        $conn = null;
         try {
-            $this->conn = new PDO(
-                "mysql:host=" . $this->host . ";dbname=" . $this->db_name,
-                $this->username,
-                $this->password
+            $conn = new PDO(
+                "mysql:host=" . self::$host . ";dbname=" . self::$db_name,
+                self::$username,
+                self::$password
             );
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo "Error de conexión: " . $e->getMessage();
         }
-        return $this->conn;
+        return $conn;
     }
 }
 

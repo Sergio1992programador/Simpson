@@ -77,7 +77,7 @@ if ($user) {
                     border-radius: 10px;
                     display: inline-block;
                 ">
-                Usuario o contraseña incorrectos
+                El nombre de usuario ya existe o hubo un error en el registro.
             </label>
             <button>
                 <a id="enlace" href="../views/login.php" style="text-decoration: none; color: inherit;">Volver</a>
