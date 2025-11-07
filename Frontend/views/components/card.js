@@ -1,6 +1,6 @@
 export function card(data) {
   const cardElement = document.createElement("div");
-  cardElement.classList.add("col-sm-10", "m-3");
+  cardElement.classList = "col-sm-10 text-info rounded-4 shadow-sm hover-card m-5 bg-white cursor-pointer p-4";
   cardElement.id = data.id;
 
   // Imagen centrada
@@ -29,7 +29,7 @@ export function card(data) {
   cardElement.innerHTML += `<h4>${data.titulo}</h4>`;
   cardElement.appendChild(descripcionWrapper);
 
-  const direccion = `${data.id}.html`;
+  const direccion = `${data.enlace}.`;
   cardElement.addEventListener("click", () => {
     window.location.href = direccion;
   });

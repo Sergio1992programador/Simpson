@@ -5,11 +5,13 @@ require_once __DIR__ . '/../Models/Usuario.php';
 use Firebase\JWT\JWT;
 use App\Models\Usuario;
 
-class AuthController {
+class AuthController
+{
 
-    public function login($data) {
+    public function login($data)
+    {
         // Validar entrada
-        if (!isset($data['email']) || !isset($data['password'])) {
+        if (!isset($data['usuario']) || !isset($data['password'])) {
             http_response_code(400);
             echo json_encode(['mensaje' => 'Email y contraseña requeridos']);
             return;
@@ -17,12 +19,13 @@ class AuthController {
 
         // En este ejemplo, comprobamos contra la base de datos (si tu tabla tiene campo password)
         //    o simplemente una validación simulada para pruebas.
-        $usuario = Usuario::findByEmail($data['email']);
-        if (!$usuario || $usuario['password'] !== $data['password']) {
+        $usuario = Usuario::findByUsername($data['usuario']);
+        if (!$usuario || !password_verify($data['password'], $usuario['password'])) {
             http_response_code(401);
             echo json_encode(['mensaje' => 'Credenciales incorrectas']);
             return;
         }
+
 
         // Cargar configuración JWT
         $config = require __DIR__ . '/../config/jwt.php';

@@ -1,4 +1,6 @@
 <?php
+// === PENDIENTE DE BORRAR NO SIRVE YA ===
+
 // Verifica si la petición es de tipo POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 

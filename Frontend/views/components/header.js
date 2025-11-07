@@ -1,31 +1,70 @@
-export function renderHeader(isLoggedIn) {
-  const logoutItem = isLoggedIn
-    ? `<li class='nav-item'><a class='nav-link' href='http://localhost/lossimpson/controller/logout.php'>Cerrar sesión</a></li>`
-    : `<li class='nav-item'><a class='nav-link' href='http://localhost/lossimpson/views/login.php'>Iniciar sesión</a></li>`;
+export function renderHeader() {
+  let isLoggedIn = localStorage.getItem("token");
+  const header = document.createElement("header");
+  header.className = "bg-primary sticky-top z-3";
 
-  const headerHTML = `
-    <header>
-      <nav class='navbar navbar-expand-lg navbar-dark bg-dark' id='navbar'>
-        <div class='container-fluid'>
-          <a class='navbar-brand' href='#'>
-            <h1>Los Simpson <img id='barto' src='http://localhost/lossimpson/img/bartt.png' alt='Bart'></h1>
-          </a>
-          <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#menu'
-            aria-controls='menu' aria-expanded='false' aria-label='Menú'>
-            <span class='navbar-toggler-icon'></span>
-          </button>
-          <div class='collapse navbar-collapse' id='menu'>
-            <ul class='navbar-nav ms-auto'>
-              <li class='nav-item'><a class='nav-link' href='http://localhost/lossimpson/dashboard.php'>Inicio</a></li>
-              <li class='nav-item'><a class='nav-link' href='#sobre'>Sobre nosotros</a></li>
-              <li class='nav-item'><a class='nav-link' href='#contacto'>Contacto</a></li>
-              ${logoutItem}
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-  `;
+  const nav = document.createElement("nav");
+  nav.className = "navbar navbar-expand-lg py-0";
+  nav.id = "navbar";
 
-  document.body.insertAdjacentHTML("afterbegin", headerHTML);
+  const container = document.createElement("div");
+  container.className = "container-fluid text-dark";
+
+  const brandLink = document.createElement("a");
+  brandLink.className = "navbar-brand";
+  brandLink.href = "#";
+
+  const h1 = document.createElement("h1");
+  h1.textContent = "Los Simpson ";
+
+  const bartImg = document.createElement("img");
+  bartImg.id = "barto";
+  bartImg.src = "http://localhost/lossimpson/img/bartt.png";
+  bartImg.alt = "Bart";
+  bartImg.className = "w-auto";
+  bartImg.style.height = "100px";
+
+  h1.appendChild(bartImg);
+  brandLink.appendChild(h1);
+
+  const collapse = document.createElement("div");
+  collapse.className = "collapse navbar-collapse";
+  collapse.id = "menu";
+
+  const ul = document.createElement("ul");
+  ul.className = "navbar-nav ms-auto";
+
+  const links = [
+    { text: "Inicio", onClick: () => window.location.href = "http://localhost/lossimpson/Frontend/index.html" },
+    { text: "Sobre nosotros", onClick: () => window.location.href = "#sobre" },
+    { text: "Contacto", onClick: () => window.location.href = "#contacto" },
+    {
+      text: isLoggedIn ? "Cerrar sesión" : "Iniciar sesión",
+      onClick: () => isLoggedIn
+        ? () => { localStorage.removeItem("token"); window.location.href = window.location.href; }
+        : window.location.href = "http://localhost/lossimpson/Frontend/views/login.html"
+    },
+  ];
+
+  links.forEach(({ text, onClick }) => {
+    const li = document.createElement("li");
+    li.className = "nav-item";
+
+    const button = document.createElement("button");
+    button.className = "nav-link btn btn-link text-dark fs-5 px-3 py-2 custom-hover";
+    button.textContent = text;
+    button.onclick = onClick;
+
+    li.appendChild(button);
+    ul.appendChild(li);
+  });
+
+  collapse.appendChild(ul);
+  container.appendChild(brandLink);
+  container.appendChild(collapse);
+  nav.appendChild(container);
+  header.appendChild(nav);
+
+  document.body.insertBefore(header, document.body.firstChild);
+  return header;
 }
