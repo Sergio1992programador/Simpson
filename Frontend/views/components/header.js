@@ -1,0 +1,31 @@
+export function renderHeader(isLoggedIn) {
+  const logoutItem = isLoggedIn
+    ? `<li class='nav-item'><a class='nav-link' href='http://localhost/lossimpson/controller/logout.php'>Cerrar sesión</a></li>`
+    : `<li class='nav-item'><a class='nav-link' href='http://localhost/lossimpson/views/login.php'>Iniciar sesión</a></li>`;
+
+  const headerHTML = `
+    <header>
+      <nav class='navbar navbar-expand-lg navbar-dark bg-dark' id='navbar'>
+        <div class='container-fluid'>
+          <a class='navbar-brand' href='#'>
+            <h1>Los Simpson <img id='barto' src='http://localhost/lossimpson/img/bartt.png' alt='Bart'></h1>
+          </a>
+          <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#menu'
+            aria-controls='menu' aria-expanded='false' aria-label='Menú'>
+            <span class='navbar-toggler-icon'></span>
+          </button>
+          <div class='collapse navbar-collapse' id='menu'>
+            <ul class='navbar-nav ms-auto'>
+              <li class='nav-item'><a class='nav-link' href='http://localhost/lossimpson/dashboard.php'>Inicio</a></li>
+              <li class='nav-item'><a class='nav-link' href='#sobre'>Sobre nosotros</a></li>
+              <li class='nav-item'><a class='nav-link' href='#contacto'>Contacto</a></li>
+              ${logoutItem}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+  `;
+
+  document.body.insertAdjacentHTML("afterbegin", headerHTML);
+}
