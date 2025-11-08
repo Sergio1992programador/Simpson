@@ -21,29 +21,34 @@
             <div class="container-fluid">
                 <div id="character-container"
                     class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 m-4 justify-content-lg-center">
-                    <form id="loginForm"
-                        class="bg-primary text-secondary fs-4 d-flex justify-content-center align-items-center p-2 rounded">
+                    <form id="loginForm" class="bg-primary text-secondary fs-4 p-4 rounded">
                         <fieldset>
-                            <legend
-                                class="text-info fs-1 d-flex justify-content-center align-items-center p-2 text-decoration-underline">
-                                Usuario</legend>
-                            <label for="usuario">Usuario:</label><br>
-                            <input class="form-control border-0" type="text" name="usuario" id="usuario"
-                                placeholder="Ponga su Usuario" required><br>
-                            <label for="password">Contraseña:</label><br>
-                            <input class="form-control border-0" type="password" name="password" id="password"
-                                placeholder="Ponga su contraseña" required>
-                            <div class="centrado">
-                                <button class="btn rounded bg-info text-primary border-0" type="submit">Entrar</button>
-                                <button class="btn rounded bg-info text-primary border-0"
-                                    type="reset">Limpiar</button><br><br>
+                            <legend class="text-info fs-1 text-center text-decoration-underline mb-4">Usuario</legend>
+
+                            <div class="mb-3">
+                                <label for="usuario" class="form-label">Usuario:</label>
+                                <input type="text" name="usuario" id="usuario" class="form-control border-0"
+                                    placeholder="Ponga su Usuario" required>
                             </div>
-                            <div class="centrado">
-                                <button class="btn rounded bg-info text-primary border-0"><a id="enlace"
-                                        href="crearusuario.html">Crear Usuario</a></button>
+
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña:</label>
+                                <input type="password" name="password" id="password" class="form-control border-0"
+                                    placeholder="Ponga su contraseña" required>
+                            </div>
+
+                            <div class="d-grid gap-2 mb-3">
+                                <button class="btn bg-info text-primary border-0" type="submit">Entrar</button>
+                                <button class="btn bg-info text-primary border-0" type="reset">Limpiar</button>
+                            </div>
+
+                            <div class="text-center">
+                                <a class="btn bg-info text-primary border-0" id="enlace" href="crearusuario.html">Crear
+                                    Usuario</a>
                             </div>
                         </fieldset>
                     </form>
+
                 </div>
             </div>
         </section>

@@ -19,20 +19,32 @@ class Router
             return;
         }
 
-        if ($segments[0] != 'usuarios' || $method != 'POST') {
-            // AuthMiddleware::verificarToken();
-        }
-
-
         $routes = [
-            'usuarios' => \App\Controllers\UsuarioController::class,
-            'personajes' => \App\Controllers\PersonajeController::class,
-            'familia' => \App\Controllers\FamiliaController::class
+            'usuarios' => [
+                'controller' => \App\Controllers\UsuarioController::class,
+                'public' => ['POST'] // solo POST es público (crear usuario)
+            ],
+            'personajes' => [
+                'controller' => \App\Controllers\PersonajeController::class,
+                'public' => ['GET'] // permite GET sin token
+            ],
+            'familia' => [
+                'controller' => \App\Controllers\FamiliaController::class,
+                'public' => ['GET'] // permite GET sin token
+            ]
         ];
 
+
         if (isset($routes[$resource])) {
-            $controlerClass = $routes[$resource];
+            $routeConfig = $routes[$resource];
+            $controlerClass = $routeConfig['controller'];
             $controller = new $controlerClass();
+
+            $publicMethods = $routeConfig['public'] ?? [];
+            if (!in_array($method, $publicMethods)) {
+                AuthMiddleware::verificarToken(); // solo si no es público
+            }
+
             switch ($method) {
                 case 'GET':
                     $id ? $controller->show($id) : $controller->index();

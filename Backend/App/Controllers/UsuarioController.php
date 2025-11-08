@@ -25,11 +25,16 @@ class UsuarioController
 
     public function store($data)
     {
-        if (!isset($data['nombre']) || !isset($data['apellidos']) || !isset($data['email']) || !isset($data['telefono']) || !isset($data['nombre_usuario']) || !isset($data['password_hash'])) {
-            http_response_code(400);
-            echo json_encode(['mensaje' => 'Datos incompletos']);
-            return;
+        $camposObligatorios = ['nombre', 'apellidos', 'email', 'telefono', 'nombre_usuario', 'password'];
+
+        foreach ($camposObligatorios as $campo) {
+            if (empty($data[$campo])) {
+                http_response_code(400);
+                echo json_encode(['mensaje' => "Campo '$campo' incompleto"]);
+                return;
+            }
         }
+
         $usuario = Usuario::create($data);
         http_response_code(201);
         echo json_encode($usuario);

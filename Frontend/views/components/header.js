@@ -40,9 +40,14 @@ export function renderHeader() {
     { text: "Contacto", onClick: () => window.location.href = "#contacto" },
     {
       text: isLoggedIn ? "Cerrar sesión" : "Iniciar sesión",
-      onClick: () => isLoggedIn
-        ? () => { localStorage.removeItem("token"); window.location.href = window.location.href; }
-        : window.location.href = "http://localhost/lossimpson/Frontend/views/login.html"
+      onClick: () => {
+        if (isLoggedIn) {
+          localStorage.removeItem("token");
+          window.location.href = window.location.href;
+        } else {
+          window.location.href = "http://localhost/lossimpson/Frontend/views/login.html";
+        }
+      }
     },
   ];
 
