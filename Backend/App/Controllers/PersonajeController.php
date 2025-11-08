@@ -6,8 +6,10 @@ use App\Models\Personaje;
 class PersonajeController
 {
 
+    // Muestra la lista de personajes, con opción de filtrado
     public function index($filters = [])
     {
+        // Aplica filtro por familia si se proporciona
         if (isset($filters['f'])) {
             $personajes = Personaje::getByFamilyId($filters['f']);
         } else {
@@ -19,6 +21,7 @@ class PersonajeController
 
 
 
+    // Muestra un personaje específico por ID
     public function show($id)
     {
         $personaje = Personaje::find($id);
@@ -30,6 +33,7 @@ class PersonajeController
         }
     }
 
+    // Crea un nuevo personaje
     public function store($data)
     {
         if (!isset($data['nombre']) || !isset($data['enlace']) || !isset($data['imagen']) || !isset($data['titulo']) || !isset($data['descripcion'])) {
@@ -42,6 +46,7 @@ class PersonajeController
         echo json_encode($personaje);
     }
 
+    // Actualiza un personaje existente
     public function update($id, $data)
     {
         $personaje = Personaje::update($id, $data);
@@ -53,6 +58,7 @@ class PersonajeController
         }
     }
 
+    // Elimina un personaje por ID
     public function delete($id)
     {
         $result = Personaje::delete($id);

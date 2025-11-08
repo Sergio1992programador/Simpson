@@ -5,6 +5,7 @@ class Router
 {
     public static function route($method, $uri, $data)
     {
+        // Divide la URI en segmentos y obtiene el recurso y el ID
         $segments = explode('/', $uri);
         $resource = $segments[0] ?? null;
         $id = $segments[1] ?? null;
@@ -16,6 +17,7 @@ class Router
             return;
         }
 
+        // Define las rutas y sus controladores asociados, así como los métodos públicos y parámetros permitidos
         $routes = [
             'usuarios' => [
                 'controller' => \App\Controllers\UsuarioController::class,
@@ -32,18 +34,21 @@ class Router
             ]
         ];
 
+        // Verifica si la ruta existe y aplica la lógica correspondiente
         if (isset($routes[$resource])) {
             $routeConfig = $routes[$resource];
             $controllerClass = $routeConfig['controller'];
             $controller = new $controllerClass();
 
+            // Verifica si el método es público o requiere autenticación
             $publicMethods = $routeConfig['public'] ?? [];
             if (!in_array($method, $publicMethods)) {
                 AuthMiddleware::verificarToken();
             }
-
+            // Lógica de enrutamiento basada en el método HTTP
             switch ($method) {
                 case 'GET':
+                    // Obtener y filtrar parámetros de consulta
                     $queryParams = $_GET;
                     $filteredParams = [];
 

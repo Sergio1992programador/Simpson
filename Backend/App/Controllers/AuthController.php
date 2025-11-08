@@ -4,6 +4,7 @@ namespace App\Controllers;
 use Firebase\JWT\JWT;
 use App\Models\Usuario;
 
+// Controlador para la autenticación y generación de tokens JWT
 class AuthController
 {
 

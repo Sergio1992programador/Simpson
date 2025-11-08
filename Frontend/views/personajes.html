@@ -2,26 +2,28 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="manifest" href="../manifest.json">
-    <link rel="stylesheet" href="resources/css/global.css">
-    <script type="text/javascript" src="../bootstrap/js/bootstrap.bundle.js" defer></script>
-    <script type="module" src="resources/js/personajes.js"></script>
-    <meta name="keywords" content="Lá mejor página">
-    <meta name="author" content="Sergio Vallejo">
-    <title>Personajes</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="La mejor página" />
+    <meta name="author" content="Sergio Vallejo" />
+    <title>Listado de personajes</title>
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="resources/css/global.css" />
+    <link rel="manifest" href="../manifest.json" />
+
+    <script src="../bootstrap/js/bootstrap.bundle.js" defer></script>
+    <script type="module" src="resources/js/personajes.js" defer></script>
 </head>
 
 <body>
-
-
     <main>
-        <section>
+        <section aria-labelledby="personajes-titulo">
             <div class="container-fluid">
+                <h1 id="personajes-titulo" class="visually-hidden">Personajes disponibles</h1>
                 <div id="character-container"
                     class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 m-4 justify-content-lg-center">
+                    <!-- Aquí se insertan los personajes dinámicamente -->
                 </div>
             </div>
         </section>
