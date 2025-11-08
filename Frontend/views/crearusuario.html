@@ -1,47 +1,3 @@
-<?php
-session_start(); // Inicia la sesión
-
-require_once "../models/User.php";
-require_once(__DIR__ . "/components/header.php");
-require_once "../config/dataBase.php";
-require_once "../controller/UserController.php";
-$v = new Database();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $data = [
-        'nombre' => $_POST['nombre'],
-        'apellidos' => $_POST['apellidos'],
-        'email' => $_POST['email'],
-        'telefono' => $_POST['numero'],
-        'nombre_usuario' => $_POST['usuario_nuevo'],
-        'password_hash' => $_POST['password_hash']
-    ];
-
-    if (UserController::create($data)) {
-        $user = UserController::getVerifiedUser($data['nombre'], $data['password_hash']);
-        // Guardar datos en la sesión
-        $_SESSION['nombre'] = $user['usuario_nuevo'];
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['usuario'] = [
-            'nombre' => $data['nombre'],
-            'apellidos' => $data['apellidos'],
-            'email' => $data['email'],
-            'telefono' => $data['telefono'],
-            'usuario' => $data['nombre_usuario']
-        ];
-
-
-        header('Location: ../dashboard.php');
-        exit;
-    } else {
-
-        // $mensaje_error = "---";
-        header('Location: ../controller/verify_login2.php');
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -49,9 +5,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="../manifest.json">
     <link rel="stylesheet" href="resources/css/bootstrap.css">
     <link rel="stylesheet" href="resources/css/formulario.css">
+    <script type="module" src="resources/js/crearusuario.js" defer></script>
     <script type="text/javascript" src="../bootstrap/js/bootstrap.bundle.js" defer></script>
     <meta name="keywords" content="Lá mejor página">
     <meta name="author" content="Sergio Vallejo">
@@ -112,12 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         </section>
-        <article>
-
-        </article>
-        <aside>
-
-        </aside>
     </main>
 </body>
 

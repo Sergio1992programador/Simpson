@@ -1,6 +1,5 @@
 <?php
 namespace App\Controllers;
-require_once __DIR__ . '/../Models/Usuario.php';
 
 use Firebase\JWT\JWT;
 use App\Models\Usuario;
@@ -10,6 +9,8 @@ class AuthController
 
     public function login($data)
     {
+
+
         // Validar entrada
         if (!isset($data['usuario']) || !isset($data['password'])) {
             http_response_code(400);
@@ -20,7 +21,7 @@ class AuthController
         // En este ejemplo, comprobamos contra la base de datos (si tu tabla tiene campo password)
         //    o simplemente una validación simulada para pruebas.
         $usuario = Usuario::findByUsername($data['usuario']);
-        if (!$usuario || !password_verify($data['password'], $usuario['password'])) {
+        if (!$usuario || !password_verify($data['password'], $usuario['password_hash'])) {
             http_response_code(401);
             echo json_encode(['mensaje' => 'Credenciales incorrectas']);
             return;

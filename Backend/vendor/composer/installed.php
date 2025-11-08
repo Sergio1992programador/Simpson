@@ -3,7 +3,7 @@
         'name' => 'sergio/lossimpson',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => '9dfa9e71610801b1524ad98208871b763da27cb4',
+        'reference' => 'afa27deda6484d3dc2c2e8ad1fba2760a507c77a',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'sergio/lossimpson' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => '9dfa9e71610801b1524ad98208871b763da27cb4',
+            'reference' => 'afa27deda6484d3dc2c2e8ad1fba2760a507c77a',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

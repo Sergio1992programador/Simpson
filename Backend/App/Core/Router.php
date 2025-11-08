@@ -30,10 +30,6 @@ class Router
             'familia' => \App\Controllers\FamiliaController::class
         ];
 
-
-        $data = json_decode(file_get_contents("php://input"), true);
-
-
         if (isset($routes[$resource])) {
             $controlerClass = $routes[$resource];
             $controller = new $controlerClass();

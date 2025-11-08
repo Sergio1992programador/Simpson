@@ -6,6 +6,8 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     const usuario = document.getElementById("usuario").value;
     const password = document.getElementById("password").value;
 
+    console.log(JSON.stringify({ usuario, password }));
+
     const res = await fetch("http://localhost/lossimpson/Backend/public/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -17,10 +19,9 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
         localStorage.setItem("token", data.token);
         window.location.href = "personajes.html";
     } else {
-        alert("Login fallido");
+        alert(data.mensaje || "Login fallido");
     }
 });
 
-console.log("Me llaman desde login");
 renderHeader();
 renderFooter();
