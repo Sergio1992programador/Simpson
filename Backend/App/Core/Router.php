@@ -3,17 +3,14 @@ namespace App\Core;
 
 class Router
 {
-
     public static function route($method, $uri, $data)
     {
-
         $segments = explode('/', $uri);
-
         $resource = $segments[0] ?? null;
         $id = $segments[1] ?? null;
 
-        // Primero comprobamos si es login
-        if ($segments[0] == 'login' && $method == 'POST') {
+        // Login directo
+        if ($resource === 'login' && $method === 'POST') {
             $auth = new \App\Controllers\AuthController();
             $auth->login($data);
             return;
@@ -22,55 +19,70 @@ class Router
         $routes = [
             'usuarios' => [
                 'controller' => \App\Controllers\UsuarioController::class,
-                'public' => ['POST'] // solo POST es público (crear usuario)
+                'public' => ['POST']
             ],
             'personajes' => [
                 'controller' => \App\Controllers\PersonajeController::class,
-                'public' => ['GET'] // permite GET sin token
+                'public' => ['GET'],
+                'params' => ['f']
             ],
-            'familia' => [
+            'familias' => [
                 'controller' => \App\Controllers\FamiliaController::class,
-                'public' => ['GET'] // permite GET sin token
+                'public' => ['GET', 'POST']
             ]
         ];
 
-
         if (isset($routes[$resource])) {
             $routeConfig = $routes[$resource];
-            $controlerClass = $routeConfig['controller'];
-            $controller = new $controlerClass();
+            $controllerClass = $routeConfig['controller'];
+            $controller = new $controllerClass();
 
             $publicMethods = $routeConfig['public'] ?? [];
             if (!in_array($method, $publicMethods)) {
-                AuthMiddleware::verificarToken(); // solo si no es público
+                AuthMiddleware::verificarToken();
             }
 
             switch ($method) {
                 case 'GET':
-                    $id ? $controller->show($id) : $controller->index();
+                    $queryParams = $_GET;
+                    $filteredParams = [];
+
+                    // Extraer parámetros definidos en la ruta
+                    if (!empty($routeConfig['params'])) {
+                        foreach ($routeConfig['params'] as $paramName) {
+                            if (isset($queryParams[$paramName])) {
+                                $filteredParams[$paramName] = $queryParams[$paramName];
+                            }
+                        }
+                    }
+
+                    // Si hay parámetros válidos, pásalos al controlador
+                    if (!empty($filteredParams)) {
+                        $controller->index($filteredParams);
+                    } else {
+                        $id ? $controller->show($id) : $controller->index();
+                    }
                     break;
+
                 case 'POST':
                     $controller->store($data);
                     break;
+
                 case 'PUT':
                     $controller->update($id, $data);
                     break;
+
                 case 'DELETE':
                     $controller->destroy($id);
                     break;
+
                 default:
                     http_response_code(405);
                     echo json_encode(['error' => 'Método no permitido']);
             }
-
         } else {
             http_response_code(404);
             echo json_encode(['error' => 'Ruta no encontrada']);
-
         }
     }
 }
-
-
-
-

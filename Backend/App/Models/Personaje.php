@@ -45,6 +45,23 @@ class Personaje
         return $stmt->execute([$id]);
     }
 
+    public static function getByFamilyId($familiaId)
+    {
+        $db = Database::connect();
+
+        $stmt = $db->prepare("
+        SELECT p.*
+        FROM personajes p
+        INNER JOIN personajes_familias pf ON p.id = pf.personaje_id
+        WHERE pf.familia_id = ?
+        ");
+
+        $stmt->execute([$familiaId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
 }
 
 

@@ -6,10 +6,18 @@ use App\Models\Personaje;
 class PersonajeController
 {
 
-    public function index()
+    public function index($filters = [])
     {
-        echo json_encode(Personaje::all());
+        if (isset($filters['f'])) {
+            $personajes = Personaje::getByFamilyId($filters['f']);
+        } else {
+            $personajes = Personaje::all();
+        }
+
+        echo json_encode($personajes);
     }
+
+
 
     public function show($id)
     {

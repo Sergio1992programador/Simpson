@@ -7,10 +7,13 @@ import { renderHeader } from '../../components/header.js';
 // const isLoggedIn = !!userId;
 renderHeader();
 
-// 2. Luego cargar los personajes
-const API_URL = "http://localhost/lossimpson/Backend/public/personajes";
-
 function loadPersonajes() {
+
+  const params = new URLSearchParams(window.location.search);
+  const familiaId = params.get("f");
+  const API_URL = familiaId
+    ? `http://localhost/lossimpson/Backend/public/personajes?f=${familiaId}`
+    : "http://localhost/lossimpson/Backend/public/personajes";
 
   fetch(API_URL)
     .then((res) => res.json())

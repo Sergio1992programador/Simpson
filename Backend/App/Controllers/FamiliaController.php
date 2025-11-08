@@ -3,7 +3,7 @@
 namespace App\Controllers;
 // El controlador es el que contiene la lógica real de los endpoints (CRUD, validaciones…).
 
-require_once __DIR__ . '/../models/Familia.php';
+use App\Models\Familia;
 
 class FamiliaController
 {

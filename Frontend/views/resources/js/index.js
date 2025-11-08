@@ -25,8 +25,8 @@ const cards = [
         id: "familias",
         nombre: "Familias",
         enlace: isLoggedIn
-            ? "http://localhost/lossimpson/views/familias.html"
-            : "controller/sinverificado.php",
+            ? "http://localhost/lossimpson/Frontend/views/familias.html"
+            : "http://localhost/lossimpson/Frontend/index.html",
         imagen: "familias.webp",
         titulo: "Familias importantes",
         descripcion:
@@ -36,8 +36,8 @@ const cards = [
         id: "video",
         nombre: "Videojuego",
         enlace: isLoggedIn
-            ? "http://localhost/lossimpson/views/videojuego.html"
-            : "controller/sinverificado.php",
+            ? "http://localhost/lossimpson/Frontend/views/videojuego.html"
+            : "http://localhost/lossimpson/Frontend/index.html",
         imagen: "video.png",
         titulo: "Videojuego de los Simpson",
         descripcion:
@@ -47,8 +47,8 @@ const cards = [
         id: "tienda",
         nombre: "Tienda Simpson",
         enlace: isLoggedIn
-            ? "http://localhost/lossimpson/views/tienda.php"
-            : "controller/sinverificado.php",
+            ? "http://localhost/lossimpson/Frontend/views/tienda.html"
+            : "http://localhost/lossimpson/Frontend/index.html",
         imagen: "tienda.png",
         titulo: "Tienda de los Simpson",
         descripcion:
