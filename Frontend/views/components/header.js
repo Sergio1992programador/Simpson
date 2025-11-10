@@ -1,14 +1,14 @@
 export function renderHeader() {
   let isLoggedIn = localStorage.getItem("token");
+
   const header = document.createElement("header");
-  header.className = "bg-primary sticky-top z-3";
 
   const nav = document.createElement("nav");
-  nav.className = "navbar navbar-expand-lg py-0";
+  nav.className = "navbar navbar-expand-lg navbar-dark bg-dark";
   nav.id = "navbar";
 
   const container = document.createElement("div");
-  container.className = "container-fluid text-dark";
+  container.className = "container-fluid";
 
   const brandLink = document.createElement("a");
   brandLink.className = "navbar-brand";
@@ -27,6 +27,19 @@ export function renderHeader() {
   h1.appendChild(bartImg);
   brandLink.appendChild(h1);
 
+  const toggler = document.createElement("button");
+  toggler.className = "navbar-toggler";
+  toggler.type = "button";
+  toggler.setAttribute("data-bs-toggle", "collapse");
+  toggler.setAttribute("data-bs-target", "#menu");
+  toggler.setAttribute("aria-controls", "menu");
+  toggler.setAttribute("aria-expanded", "false");
+  toggler.setAttribute("aria-label", "Menú");
+
+  const togglerIcon = document.createElement("span");
+  togglerIcon.className = "navbar-toggler-icon";
+  toggler.appendChild(togglerIcon);
+
   const collapse = document.createElement("div");
   collapse.className = "collapse navbar-collapse";
   collapse.id = "menu";
@@ -35,9 +48,18 @@ export function renderHeader() {
   ul.className = "navbar-nav ms-auto";
 
   const links = [
-    { text: "Inicio", onClick: () => window.location.href = "http://localhost/lossimpson/Frontend/index.html" },
-    { text: "Sobre nosotros", onClick: () => window.location.href = "#sobre" },
-    { text: "Contacto", onClick: () => window.location.href = "#contacto" },
+    {
+      text: "Inicio",
+      href: "http://localhost/lossimpson/Frontend/index.html"
+    },
+    {
+      text: "Sobre nosotros",
+      href: "#sobre"
+    },
+    {
+      text: "Contacto",
+      href: "#contacto"
+    },
     {
       text: isLoggedIn ? "Cerrar sesión" : "Iniciar sesión",
       onClick: () => {
@@ -48,24 +70,34 @@ export function renderHeader() {
           window.location.href = "http://localhost/lossimpson/Frontend/views/login.html";
         }
       }
-    },
+    }
   ];
 
-  links.forEach(({ text, onClick }) => {
+  links.forEach(({ text, href, onClick }) => {
     const li = document.createElement("li");
     li.className = "nav-item";
 
-    const button = document.createElement("button");
-    button.className = "nav-link btn btn-link text-dark fs-5 px-3 py-2 custom-hover";
-    button.textContent = text;
-    button.onclick = onClick;
+    const a = document.createElement("a");
+    a.className = "nav-link";
+    a.textContent = text;
 
-    li.appendChild(button);
+    if (onClick) {
+      a.href = "#";
+      a.onclick = (e) => {
+        e.preventDefault();
+        onClick();
+      };
+    } else {
+      a.href = href;
+    }
+
+    li.appendChild(a);
     ul.appendChild(li);
   });
 
   collapse.appendChild(ul);
   container.appendChild(brandLink);
+  container.appendChild(toggler);
   container.appendChild(collapse);
   nav.appendChild(container);
   header.appendChild(nav);

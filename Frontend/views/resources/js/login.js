@@ -27,9 +27,13 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
         // Redirigir al destino original o a personajes.html
         window.location.href = redirectUrl || "personajes.html";
-    } else {
-        alert(data.mensaje || "Login fallido");
-    }
+      } else {
+  const msg = document.getElementById("login-message");
+  if (msg) {
+    msg.textContent = data.mensaje || "Usuario o contraseña incorrectos.";
+    msg.classList.remove("d-none");
+  }
+}
 });
 
 // Mostrar mensaje si viene redirigido
