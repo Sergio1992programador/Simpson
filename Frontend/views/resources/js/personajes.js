@@ -33,7 +33,7 @@ function loadPersonajes() {
           nombre: personaje.nombre,
           titulo: personaje.titulo,
           descripcion: personaje.descripcion,
-          enlace: `http://localhost/lossimpson/Frontend/views/detalle_personaje.html?id=${personaje.id}`,
+          enlace: `http://localhost/lossimpson/Frontend/views/personajesprueba.html?id=${personaje.id}`,
         };
 
         container.appendChild(card(carta));

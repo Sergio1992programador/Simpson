@@ -105,3 +105,4 @@ export function renderHeader() {
   document.body.insertBefore(header, document.body.firstChild);
   return header;
 }
+
