@@ -10,10 +10,7 @@ export function renderHeader() {
   const container = document.createElement("div");
   container.className = "container-fluid";
 
-  const brandLink = document.createElement("a");
-  brandLink.className = "navbar-brand";
-  brandLink.href = "#";
-
+  // H1 como título principal
   const h1 = document.createElement("h1");
   h1.textContent = "Los Simpson ";
 
@@ -25,7 +22,12 @@ export function renderHeader() {
   bartImg.style.height = "100px";
 
   h1.appendChild(bartImg);
-  brandLink.appendChild(h1);
+
+  // Al pulsar el h1, redirige al inicio
+  h1.style.cursor = "pointer";
+  h1.onclick = () => {
+    window.location.href = "http://localhost/lossimpson/Frontend/index.html";
+  };
 
   const toggler = document.createElement("button");
   toggler.className = "navbar-toggler";
@@ -47,10 +49,11 @@ export function renderHeader() {
   const ul = document.createElement("ul");
   ul.className = "navbar-nav ms-auto";
 
+  // Links
   const links = [
     {
-      text: "Inicio",
-      href: "http://localhost/lossimpson/Frontend/index.html"
+      text: "Tienda",
+      href: "http://localhost/lossimpson/Frontend/views/tienda.html"
     },
     {
       text: "Sobre nosotros",
@@ -65,9 +68,22 @@ export function renderHeader() {
       onClick: () => {
         if (isLoggedIn) {
           localStorage.removeItem("token");
-          window.location.href = window.location.href;
+          localStorage.removeItem("victoriaShown"); // reset para que vuelva a mostrarse al próximo login
+          // Mostrar imagen escondido.png al cerrar sesión
+          const img = document.createElement("img");
+          img.src = "http://localhost/lossimpson/img/escondido.png";
+          img.alt = "Cerrar sesión";
+          img.style.height = "80px";
+          img.style.width = "auto";
+          img.style.marginLeft = "10px";
+          ul.appendChild(img);
+
+          setTimeout(() => {
+            window.location.href = window.location.href;
+          }, 800);
         } else {
-          window.location.href = "http://localhost/lossimpson/Frontend/views/login.html";
+          window.location.href =
+            "http://localhost/lossimpson/Frontend/views/login.html";
         }
       }
     }
@@ -96,13 +112,32 @@ export function renderHeader() {
   });
 
   collapse.appendChild(ul);
-  container.appendChild(brandLink);
+  container.appendChild(h1);
   container.appendChild(toggler);
   container.appendChild(collapse);
   nav.appendChild(container);
   header.appendChild(nav);
 
   document.body.insertBefore(header, document.body.firstChild);
+
+  // ✅ Mostrar victoria.png solo la primera vez que se entra logueado
+  if (isLoggedIn && !localStorage.getItem("victoriaShown")) {
+    const img = document.createElement("img");
+    img.src = "http://localhost/lossimpson/img/victoria.png";
+    img.alt = "Inicio de sesión correcto";
+    img.style.height = "80px";
+    img.style.width = "auto";
+    img.style.marginLeft = "10px";
+    ul.appendChild(img);
+
+    // Marcamos que ya se mostró
+    localStorage.setItem("victoriaShown", "true");
+
+    // Se elimina tras 3 segundos
+    setTimeout(() => {
+      img.remove();
+    }, 800);
+  }
+
   return header;
 }
-

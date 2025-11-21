@@ -31,6 +31,11 @@ class Router
             'familias' => [
                 'controller' => \App\Controllers\FamiliaController::class,
                 'public' => ['GET', 'POST']
+            ],
+
+            'tienda' => [
+                'controller' => \App\Controllers\TiendaController::class,
+                'public' => ['GET', 'POST']
             ]
         ];
 

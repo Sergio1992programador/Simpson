@@ -24,6 +24,11 @@ export function cardWithCarousel(data) {
       display: none;
     }
 
+    
+.mt-4 {
+    margin-top: 0 !important;
+}
+
     .descripcion-wrapper {
       text-align: center;
       display: flex;
@@ -156,7 +161,6 @@ carouselWrapper.style.borderRadius = "12px";
 carouselWrapper.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
 carouselWrapper.style.height = "auto"; // ← asegura que no tenga altura fija
 carouselWrapper.style.overflow = "visible"; // ← evita recortes si el contenido crece
-0
   const carouselId = `carousel-${data.id}`;
   const carrusel = document.createElement("div");
   carrusel.id = carouselId;
@@ -246,6 +250,7 @@ carouselWrapper.style.overflow = "visible"; // ← evita recortes si el contenid
   return cardElement;
 }
 
+fetch 
 
 // 👇 Ejemplo de uso
 const data = {
@@ -253,7 +258,7 @@ const data = {
   nombre: "Camiseta Bart",
   titulo: "Camiseta Bart Attitude  Estilo urbano con personalidad rebelde  Ideal para fans de Los Simpson  Diseño original y cómodo  100% algodón premium (Talla M - Color Negro | - Color Rojo | - Color Blanco)",
   descripcion: "<p>Esta camiseta de Bart Simpson es mucho más que una prenda: es una declaración de estilo y actitud. Confeccionada en algodón 100% de alta calidad, ofrece una textura suave al tacto y una comodidad excepcional para el uso diario. Su diseño presenta a Bart en una pose icónica, con su característico aire rebelde y desenfadado, ideal para quienes buscan expresar personalidad y autenticidad a través de su ropa. El estampado está realizado con tintas duraderas que resisten lavados frecuentes sin perder intensidad, mientras que el corte moderno se adapta perfectamente a diferentes tipos de cuerpo. Ya sea para salir con amigos, para regalar a un fan de Los Simpson o simplemente para añadir un toque divertido y nostálgico a tu armario, esta camiseta es una elección que combina cultura pop, calidad textil y estilo urbano. Disponible en talla M y color negro, es una pieza versátil que se integra fácilmente en cualquier conjunto casual.</p>",
-  imagen: "../../img/barttienda3.png",
+  imagen: "../../img/barttienda1.png",
   imagenes: [
     "../../img/barttienda1.png",
     "../../img/barttienda2.png",
