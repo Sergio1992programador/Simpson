@@ -10,14 +10,14 @@ class Articulo
     public static function all()
     {
         $db = Database::connect();
-        $stmt = $db->query("SELECT * FROM articulos");
+        $stmt = $db->query("SELECT * FROM articulo");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function find($id)
     {
         $db = Database::connect();
-        $stmt = $db->prepare("SELECT * FROM articulos WHERE id = ?");
+        $stmt = $db->prepare("SELECT * FROM articulo WHERE id = ?");
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -25,7 +25,7 @@ class Articulo
     public static function create($data)
     {
         $db = Database::connect();
-        $stmt = $db->prepare("INSERT INTO articulos (nombre, enlace, imagen, titulo, descripcion) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO articulo (nombre, enlace, imagen, titulo, descripcion) VALUES (?, ?, ?, ?, ?)");
         $stmt->execute([$data['nombre'], $data['enlace'], $data['imagen'], $data['titulo'], $data['descripcion']]);
         return self::find($db->lastInsertId());
     }
@@ -33,7 +33,7 @@ class Articulo
     public static function update($id, $data)
     {
         $db = Database::connect();
-        $stmt = $db->prepare("UPDATE personajes SET nombre = ?, enlace = ?, imagen = ?, titulo = ?, descripcion = ?  WHERE id = ?");
+        $stmt = $db->prepare("UPDATE articulo SET nombre = ?, enlace = ?, imagen = ?, titulo = ?, descripcion = ?  WHERE id = ?");
         $stmt->execute([$data['nombre'], $data['enlace'], $data['imagen'], $data['titulo'], $data['descripcion'], $id]);
         return self::find($id);
     }
@@ -41,25 +41,24 @@ class Articulo
     public static function delete($id)
     {
         $db = Database::connect();
-        $stmt = $db->prepare("DELETE FROM personajes WHERE id = ?");
+        $stmt = $db->prepare("DELETE FROM articulo WHERE id = ?");
         return $stmt->execute([$id]);
     }
 
-    public static function getByFamilyId($familiaId)
+    public static function getByFamilyId($tiendaId)
     {
         $db = Database::connect();
 
         $stmt = $db->prepare("
-        SELECT p.*
-        FROM personajes p
-        INNER JOIN personajes_familias pf ON p.id = pf.personaje_id
-        WHERE pf.familia_id = ?
+            SELECT a.*
+            FROM articulo a
+            INNER JOIN articulos_tienda at ON a.id = at.articulo_id
+            WHERE at.tienda_id = ?
         ");
 
-        $stmt->execute([$familiaId]);
+        $stmt->execute([$tiendaId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
 
 }

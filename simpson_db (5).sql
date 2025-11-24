@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2025 a las 08:36:59
+-- Tiempo de generación: 24-11-2025 a las 14:31:40
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +20,45 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `simpson_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `articulo`
+--
+
+CREATE TABLE `articulo` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(200) NOT NULL,
+  `descripcion` varchar(400) NOT NULL,
+  `detalle` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `articulo`
+--
+
+INSERT INTO `articulo` (`id`, `nombre`, `descripcion`, `detalle`) VALUES
+(20, 'Camiseta Bart', 'Camiseta Bart Attitude  Estilo urbano con personalidad rebelde  Ideal para fans de Los Simpson  Diseño original y cómodo  100% algodón premium (Talla M - Color Negro | - Color Rojo | - Color Blanco)', '<p>Esta camiseta de Bart Simpson es mucho más que una prenda: es una declaración de estilo y actitud. Confeccionada en algodón 100% de alta calidad, ofrece una textura suave al tacto y una comodidad excepcional para el uso diario. Su diseño presenta a Bart en una pose icónica, con su característico aire rebelde y desenfadado, ideal para quienes buscan expresar personalidad y autenticidad a través de su ropa. El estampado está realizado con tintas duraderas que resisten lavados frecuentes sin perder intensidad, mientras que el corte moderno se adapta perfectamente a diferentes tipos de cuerpo. Ya sea para salir con amigos, para regalar a un fan de Los Simpson o simplemente para añadir un toque divertido y nostálgico a tu armario, esta camiseta es una elección que combina cultura pop, calidad textil y estilo urbano. Disponible en talla M y color negro, es una pieza versátil que se integra fácilmente en cualquier conjunto casual.</p>');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `articulos_tienda`
+--
+
+CREATE TABLE `articulos_tienda` (
+  `id` int(11) NOT NULL,
+  `articulo_id` int(11) NOT NULL,
+  `tienda_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `articulos_tienda`
+--
+
+INSERT INTO `articulos_tienda` (`id`, `articulo_id`, `tienda_id`) VALUES
+(20, 20, 20);
 
 -- --------------------------------------------------------
 
@@ -47,7 +86,7 @@ INSERT INTO `familias` (`id`, `nombre`, `imagen`, `titulo`, `descripcion`) VALUE
 (5, 'Familia Wiggum', 'wig.png', 'Wiggum', '<p>La familia Wiggum se caracteriza por su ternura desbordante y su peculiar visión del mundo. Con un padre que combina autoridad con ingenuidad, y un hijo que irradia inocencia y entusiasmo, esta familia aporta momentos entrañables y cómicos a la vida de Springfield. Su presencia equilibra el caos cotidiano con una dosis de afecto y humor absurdo.</p><br>'),
 (6, 'Familia Spuckler', 'spuck.png', 'Spuckler', '<p>La familia Spuckler se distingue por su estilo de vida rural y su espontaneidad desbordante. Con numerosos hijos y costumbres poco convencionales, aportan un toque caótico y entrañable al paisaje de Springfield. Su presencia añade humor absurdo y una visión alternativa de la vida comunitaria, enriqueciendo la serie con momentos impredecibles y genuinos.</p><br>'),
 (8, 'Familia Bouvier', 'bou.png', 'Bouvier', '<p>La familia Bouvier representa la tradición y el carácter fuerte en el universo de Springfield. Con personalidades marcadas por la firmeza, el escepticismo y un sentido del deber, aportan una visión más crítica y terrenal frente al caos cotidiano. Su presencia añade profundidad emocional y un contraste generacional que enriquece las relaciones familiares en la serie.</p><br>'),
-(9, 'familia Van Houten', 'van.png', 'Van Houten', '<p>La familia Van Houten refleja las complejidades de la vida moderna en Springfield. Con una dinámica marcada por altibajos emocionales y momentos de ternura, aportan una visión más vulnerable y humana al vecindario. Su presencia añade profundidad a las relaciones interpersonales y ofrece situaciones que combinan humor, empatía y reflexión.</p><br>'),
+(9, 'Familia Van Houten', 'van.png', 'Van Houten', '<p>La familia Van Houten refleja las complejidades de la vida moderna en Springfield. Con una dinámica marcada por altibajos emocionales y momentos de ternura, aportan una visión más vulnerable y humana al vecindario. Su presencia añade profundidad a las relaciones interpersonales y ofrece situaciones que combinan humor, empatía y reflexión.</p><br>'),
 (10, 'Familia Skinner', 'skin.png', 'Skinner', '<p>La familia Skinner se caracteriza por su estricta disciplina y su vínculo marcado por la tradición. La convivencia entre madre e hijo revela una dinámica intensa, cargada de autoridad y dependencia emocional. Su presencia en Springfield aporta momentos de humor incómodo y una mirada singular sobre las relaciones familiares y el peso del pasado.</p><br>'),
 (11, 'Familia Lovejoy', 'love.png', 'Lovejoy', '<p>La familia Lovejoy se distingue por su fuerte vínculo con la vida religiosa y su compromiso con la comunidad. Con una figura paterna que guía espiritualmente a Springfield y una madre atenta a las normas sociales, aportan una perspectiva moral y estructurada al vecindario. Su presencia equilibra el caos cotidiano con momentos de reflexión y orden.</p><br>');
 
@@ -231,6 +270,31 @@ INSERT INTO `personajes_familias` (`id`, `personaje_id`, `familia_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tienda`
+--
+
+CREATE TABLE `tienda` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(200) NOT NULL,
+  `imagen` varchar(200) NOT NULL,
+  `titulo` varchar(200) NOT NULL,
+  `descripcion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tienda`
+--
+
+INSERT INTO `tienda` (`id`, `nombre`, `imagen`, `titulo`, `descripcion`) VALUES
+(20, 'Camisetas Simpson', 'camiseta.png', 'Camisetas', '<p>¡Descubre la colección más divertida! Si haces clic aquí, te llevamos directo a las camisetas de Los Simpson: diseños únicos, llenos de humor y perfectos para los verdaderos fans de Springfield. ¡No te lo pierdas!</p><br>'),
+(21, 'Pantalones Simpson', 'pantalon.png', 'Pantalones', '<p>¡Explora nuestra colección de pantalones inspirados en Los Simpson! Pincha aquí y descubre estilos cómodos, divertidos y llenos de personalidad para los verdaderos fans de Springfield.</p><br>\r\n'),
+(22, 'Calzado Simpson', 'calzado.png', 'Calzado', '<p>¡Luce tu estilo con el calzado más original de Los Simpson!  Pincha aquí y descubre zapatillas, sandalias y mucho más con los personajes más icónicos de Springfield.</p><br>'),
+(23, 'Chandals Simpson', 'chandal.png', 'Chandals', '<p>¡Comodidad y estilo con los chandals de Los Simpson! Pincha aquí y descubre conjuntos únicos para lucir a tus personajes favoritos con actitud y confort.</p><br>'),
+(24, 'Ropa de abrigo Simpson', 'abrigo.png', 'Ropa de abrigo', '<p>¡Prepárate para el frío con la ropa de abrigo de Los Simpson! Pincha aquí y descubre chaquetas, sudaderas y mucho más con el estilo más divertido de Springfield.</p><br>');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -250,11 +314,27 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `email`, `telefono`, `nombre_usuario`, `password_hash`) VALUES
 (4, 'sergio', 'Vallejo', 'sergiovallejo1992@gmail.com', 444444, 'SergioV', '$2y$10$GYdw3q4Hdo9rSZ1lwpC3vOaV.ra9jhsl.zWMPC/BYeAOSg6p4wk/u'),
-(30, 'Yuna', 'Yuna', 'Yuna@mail.com', 12345, 'yuna', '$2y$10$dM1MyF4zeBIj1e0B2G9xDO4pTE8lwQ5vEeNnac6IFehdQHPpMqbr6');
+(30, 'Yuna', 'Yuna', 'Yuna@mail.com', 12345, 'yuna', '$2y$10$dM1MyF4zeBIj1e0B2G9xDO4pTE8lwQ5vEeNnac6IFehdQHPpMqbr6'),
+(31, 'asdfsdafs', 'sdfsadf', 'sdfsad@h.com', 6, 'pp', '$2y$10$0NiUI9cpV7uckpTo7fyUfOc9QUI/vpZUctYOeywjWHshnbaCYlXl.'),
+(32, 'elmejor', 'a', 'sdfsad@h.com', 6, 'elmejor', '$2y$10$Sn8Xjj10fBRF183p/qtkAOjFqPOYSPaOg2BeqnGFqUZ/B9f.wxi1O'),
+(33, 'ppp', 'g', 'sergio_curso_marbella@hotmail.com', 6, 'ppp', '$2y$10$9iv/Fk1lm9NwXO7cNPOvh.8jol3Rf8McrZDCiJV4rJMAhl5zx952a');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `articulo`
+--
+ALTER TABLE `articulo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `articulos_tienda`
+--
+ALTER TABLE `articulos_tienda`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `articulo` (`articulo_id`);
 
 --
 -- Indices de la tabla `familias`
@@ -276,6 +356,12 @@ ALTER TABLE `personajes_familias`
   ADD KEY `familia_id` (`familia_id`);
 
 --
+-- Indices de la tabla `tienda`
+--
+ALTER TABLE `tienda`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -284,6 +370,18 @@ ALTER TABLE `usuarios`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `articulo`
+--
+ALTER TABLE `articulo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT de la tabla `articulos_tienda`
+--
+ALTER TABLE `articulos_tienda`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `familias`
@@ -298,10 +396,26 @@ ALTER TABLE `personajes_familias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
+-- AUTO_INCREMENT de la tabla `tienda`
+--
+ALTER TABLE `tienda`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `articulos_tienda`
+--
+ALTER TABLE `articulos_tienda`
+  ADD CONSTRAINT `articulo` FOREIGN KEY (`articulo_id`) REFERENCES `articulo` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

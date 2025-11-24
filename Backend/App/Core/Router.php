@@ -36,7 +36,13 @@ class Router
             'tienda' => [
                 'controller' => \App\Controllers\TiendaController::class,
                 'public' => ['GET', 'POST']
+            ],
+
+            'articulo' => [
+                'controller' => \App\Controllers\ArticuloController::class,
+                'public' => ['GET', 'POST']
             ]
+
         ];
 
         // Verifica si la ruta existe y aplica la lógica correspondiente

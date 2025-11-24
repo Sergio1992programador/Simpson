@@ -44,7 +44,7 @@ class ArticuloController
         $usuario = Articulo::update($id, $data);
         if (!$usuario) {
             http_response_code(404);
-            echo json_encode(['mensaje' => 'Usuario no encontrado']);
+            echo json_encode(['mensaje' => 'Artículo no encontrado']);
         } else {
             echo json_encode($usuario);
         }
@@ -54,10 +54,10 @@ class ArticuloController
     {
         $result = Articulo::delete($id);
         if ($result) {
-            echo json_encode(['mensaje' => 'Usuario eliminado']);
+            echo json_encode(['mensaje' => 'Artículo eliminado']);
         } else {
             http_response_code(404);
-            echo json_encode(['mensaje' => 'Usuario no encontrado']);
+            echo json_encode(['mensaje' => 'Artículo no encontrado']);
         }
     }
 
