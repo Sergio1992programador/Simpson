@@ -3,16 +3,13 @@ import { renderFooter } from '../../components/footer.js';
 import { renderHeader } from '../../components/header.js';
 
 // 1. Verificar si el usuario está logueado
+// Ya no redirigimos si no hay token, solo lo usamos para mostrar estado en el header si lo necesitas
 const token = localStorage.getItem("token");
-if (!token) {
-    const currentUrl = window.location.pathname + window.location.search;
-    window.location.href = `/lossimpson/Frontend/views/login.html?redirect=${encodeURIComponent(currentUrl)}`;
-}
 
 // 2. Cargar el header
-renderHeader();
+renderHeader(token);
 
-// 3. Cargar las familias
+// 3. Cargar las familias (productos de la tienda)
 const API_URL = "http://localhost/lossimpson/Backend/public/tienda";
 
 function loadTienda() {
@@ -28,7 +25,7 @@ function loadTienda() {
                     nombre: tienda.nombre,
                     titulo: tienda.titulo,
                     descripcion: tienda.descripcion,
-                    enlace: `http://localhost/lossimpson/Frontend/views/personajes.html?f=${tienda.id}`,
+                    enlace: `http://localhost/lossimpson/Frontend/views/tiendacamiseta.html?id=${tienda.id}`,
                 };
 
                 container.appendChild(card(carta));

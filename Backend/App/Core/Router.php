@@ -41,6 +41,11 @@ class Router
             'articulo' => [
                 'controller' => \App\Controllers\ArticuloController::class,
                 'public' => ['GET', 'POST']
+            ],
+
+            'send' => [
+                'controller' => \App\Controllers\SendController::class,
+                'public' => ['GET', 'POST']
             ]
 
         ];

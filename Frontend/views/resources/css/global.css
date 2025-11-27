@@ -4,7 +4,7 @@
 
 .nav-link {
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
-  font-size: 25px;
+  font-size: 30px;
   color: black;
 }
 
@@ -71,6 +71,11 @@ select:focus {
   box-shadow: 0 0 0 0.2rem #01aed9 !important;
 }
 
+header.fixed-top {
+  z-index: 1030; /* por encima del contenido */
+}
+
+
 body {
   background-image: url("../../../../img/lossimpsonss.jpg");
   background-repeat: no-repeat;
@@ -83,6 +88,8 @@ body {
   /* fija al hacer scroll */
   height: 100vh;
   /* ocupa toda la altura de la pantalla */
+  padding-top: 120px; /* ajusta según la altura del header */
+
 }
 
 .hover-card:hover {
@@ -125,4 +132,74 @@ h3 {
 .col-sm-10:hover .descripcion-wrapper {
   overflow-y: auto;
   border-radius: 5px;
+}
+
+/* desplaza los enlaces un poco a la izquierda en desktop */
+.shift-left {
+  margin-right: 50px;
+  transition: margin-right 0.3s ease;
+}
+
+/* desplaza el botón hamburguesa un poco a la izquierda en móvil */
+.shift-toggler {
+  margin-right: 50px;
+  transition: margin-right 0.3s ease;
+}
+
+footer {
+  margin-top: auto!important; /* empuja el footer al final */
+}
+
+
+/* Usando clase */
+.sobre {
+  color: #01aed9 !important;
+}
+
+
+#sergio{
+  width: 200px !important;
+  object-fit: cover;
+}
+
+#bel{
+    width: 190px !important;
+    object-fit: cover;
+}
+
+
+#proyecto{
+    width: 227px !important;
+    object-fit: cover;
+}
+
+#tecnologia{
+    width: 280px !important;
+    object-fit: cover;
+}
+
+
+#vision{
+    width: 280px !important;
+    object-fit: cover;
+}
+
+
+#normal{
+  background-color: rgb(255, 237, 78) !important;
+  width: 60%;
+  border-radius: 5px;
+}
+
+#espacio{
+  margin:50px;
+  justify-content: center;
+  display: flex;
+}
+
+
+#contacto-titulo{
+  font-size: 2rem !important;
+  justify-content: center;
+  display: flex;
 }

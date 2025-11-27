@@ -2,6 +2,7 @@ export function renderHeader() {
   let isLoggedIn = localStorage.getItem("token");
 
   const header = document.createElement("header");
+  header.classList.add("fixed-top"); // <-- CAMBIO: hace que el header quede fijo arriba
 
   const nav = document.createElement("nav");
   nav.className = "navbar navbar-expand-lg navbar-dark bg-dark";
@@ -47,7 +48,7 @@ export function renderHeader() {
   collapse.id = "menu";
 
   const ul = document.createElement("ul");
-  ul.className = "navbar-nav ms-auto";
+  ul.className = "navbar-nav ms-auto"; // menú a la derecha normalmente
 
   // Links
   const links = [
@@ -57,27 +58,20 @@ export function renderHeader() {
     },
     {
       text: "Sobre nosotros",
-      href: "#sobre"
+      href: "http://localhost/lossimpson/Frontend/views/sobre.html"
     },
     {
       text: "Contacto",
-      href: "#contacto"
+      href: "http://localhost/lossimpson/Frontend/views/contacto.html"
     },
     {
       text: isLoggedIn ? "Cerrar sesión" : "Iniciar sesión",
       onClick: () => {
         if (isLoggedIn) {
           localStorage.removeItem("token");
-          localStorage.removeItem("victoriaShown"); // reset para que vuelva a mostrarse al próximo login
-          // Mostrar imagen escondido.png al cerrar sesión
-          const img = document.createElement("img");
-          img.src = "http://localhost/lossimpson/img/escondido.png";
-          img.alt = "Cerrar sesión";
-          img.style.height = "80px";
-          img.style.width = "auto";
-          img.style.marginLeft = "10px";
-          ul.appendChild(img);
+          localStorage.removeItem("victoriaShown");
 
+          mostrarImagenTemporal("http://localhost/lossimpson/img/escondido.png");
           setTimeout(() => {
             window.location.href = window.location.href;
           }, 800);
@@ -120,24 +114,46 @@ export function renderHeader() {
 
   document.body.insertBefore(header, document.body.firstChild);
 
-  // ✅ Mostrar victoria.png solo la primera vez que se entra logueado
+  //  Mostrar victoria.png solo la primera vez que se entra logueado
   if (isLoggedIn && !localStorage.getItem("victoriaShown")) {
-    const img = document.createElement("img");
-    img.src = "http://localhost/lossimpson/img/victoria.png";
-    img.alt = "Inicio de sesión correcto";
-    img.style.height = "80px";
-    img.style.width = "auto";
-    img.style.marginLeft = "10px";
-    ul.appendChild(img);
-
-    // Marcamos que ya se mostró
+    mostrarImagenTemporal("http://localhost/lossimpson/img/victoria.png");
     localStorage.setItem("victoriaShown", "true");
-
-    // Se elimina tras 3 segundos
-    setTimeout(() => {
-      img.remove();
-    }, 800);
   }
 
   return header;
+
+  // Función para mostrar imagen temporal
+  function mostrarImagenTemporal(src) {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "Estado sesión";
+    img.style.height = "50px";
+    img.style.width = "auto";
+
+    // Detectar si estamos en móvil (menor de 992px → breakpoint lg de Bootstrap)
+    if (window.innerWidth < 992) {
+      // Versión móvil → mover toggler y poner imagen en su hueco
+      toggler.classList.add("shift-toggler"); // mueve el botón hamburguesa
+      container.insertBefore(img, toggler.nextSibling); // imagen justo al lado del toggler
+
+      setTimeout(() => {
+        img.remove();
+        toggler.classList.remove("shift-toggler");
+      }, 800);
+    } else {
+      // Versión normal → imagen dentro del menú
+      const li = document.createElement("li");
+      li.className = "nav-item";
+      img.className = "nav-link p-0";
+      li.appendChild(img);
+      ul.appendChild(li);
+
+      ul.classList.add("shift-left"); // mueve enlaces un poco a la izquierda
+
+      setTimeout(() => {
+        li.remove();
+        ul.classList.remove("shift-left");
+      }, 800);
+    }
+  }
 }

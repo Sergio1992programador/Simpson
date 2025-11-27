@@ -28,7 +28,7 @@ const cards = [
     {
         id: "video",
         nombre: "Videojuego",
-        enlace: "http://localhost/lossimpson/Frontend/views/videojuego.html",
+        enlace: "http://localhost/lossimpson/Frontend/views/mantenimiento.html",
         imagen: "video.png",
         titulo: "Videojuego de los Simpson",
         descripcion:
