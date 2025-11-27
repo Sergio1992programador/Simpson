@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2025 a las 14:31:40
+-- Tiempo de generación: 27-11-2025 a las 13:51:14
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -82,7 +82,7 @@ INSERT INTO `familias` (`id`, `nombre`, `imagen`, `titulo`, `descripcion`) VALUE
 (1, 'Familia Simpson', 'familias.webp', 'Simpson', '<p>Aquí podrás ver a la familia Simpson, el grupo más emblemático de Springfield. Esta familia ha protagonizado incontables aventuras llenas de humor, crítica social y momentos entrañables. Su hogar en el 742 Evergreen Terrace es el escenario de historias que han marcado generaciones y siguen siendo referencia en la cultura pop mundial.</p><br>'),
 (2, 'Sin familia', 'in.png', 'Personajes sin familia conocida', '<p>Algunos habitantes de Springfield se distinguen por su carácter peculiar y su vida solitaria. Aunque no están rodeados por una familia visible, su presencia aporta matices únicos a la comunidad. Con personalidades intensas, extravagantes o melancólicas, estos personajes enriquecen el vecindario con situaciones inesperadas, humor ácido y momentos de reflexión que contrastan con la dinámica familiar de otros residentes.</p>\r\n¿Quieres que lo haga más cómico, más emotivo o con un enfoque diferente?\r\n'),
 (3, 'Familia Flanders', 'flan.png', 'Flanders', '<p>La familia Flanders es conocida por su devoción religiosa y su actitud siempre positiva. Ned Flanders, junto a sus hijos Rod y Todd, representan el contraste moral frente a los Simpson. Su presencia aporta equilibrio y humor al vecindario.</p><br>\r\n'),
-(4, 'Familia Nahasapeemapetilon', 'app.png', 'Nahasapeemapetilon', '<p>La familia Nahasapeemapetilon destaca por su fuerte arraigo cultural y su espíritu trabajador. El padre, siempre dedicado a su tienda y a sus valores tradicionales, transmite a sus numerosos hijos una mezcla de disciplina y amor. Su presencia en Springfield aporta diversidad, calidez y un toque de sabiduría ancestral que enriquece la vida comunitaria.</p><br>'),
+(4, 'Familia Nahasapeem', 'app.png', 'Nahasapeem', '<p>La familia Nahasapeemapetilon destaca por su fuerte arraigo cultural y su espíritu trabajador. El padre, siempre dedicado a su tienda y a sus valores tradicionales, transmite a sus numerosos hijos una mezcla de disciplina y amor. Su presencia en Springfield aporta diversidad, calidez y un toque de sabiduría ancestral que enriquece la vida comunitaria.</p><br>'),
 (5, 'Familia Wiggum', 'wig.png', 'Wiggum', '<p>La familia Wiggum se caracteriza por su ternura desbordante y su peculiar visión del mundo. Con un padre que combina autoridad con ingenuidad, y un hijo que irradia inocencia y entusiasmo, esta familia aporta momentos entrañables y cómicos a la vida de Springfield. Su presencia equilibra el caos cotidiano con una dosis de afecto y humor absurdo.</p><br>'),
 (6, 'Familia Spuckler', 'spuck.png', 'Spuckler', '<p>La familia Spuckler se distingue por su estilo de vida rural y su espontaneidad desbordante. Con numerosos hijos y costumbres poco convencionales, aportan un toque caótico y entrañable al paisaje de Springfield. Su presencia añade humor absurdo y una visión alternativa de la vida comunitaria, enriqueciendo la serie con momentos impredecibles y genuinos.</p><br>'),
 (8, 'Familia Bouvier', 'bou.png', 'Bouvier', '<p>La familia Bouvier representa la tradición y el carácter fuerte en el universo de Springfield. Con personalidades marcadas por la firmeza, el escepticismo y un sentido del deber, aportan una visión más crítica y terrenal frente al caos cotidiano. Su presencia añade profundidad emocional y un contraste generacional que enriquece las relaciones familiares en la serie.</p><br>'),
@@ -270,6 +270,61 @@ INSERT INTO `personajes_familias` (`id`, `personaje_id`, `familia_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `send`
+--
+
+CREATE TABLE `send` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `apellidos` varchar(150) NOT NULL,
+  `correo` varchar(150) NOT NULL,
+  `mensaje` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `send`
+--
+
+INSERT INTO `send` (`id`, `nombre`, `apellidos`, `correo`, `mensaje`) VALUES
+(1, 'a', 'a', 'sergiovallejo1992@gmail.com', 'prueba de que funcione mi formulario'),
+(2, 'a', 'a', 'sergiovallejo1992@gmail.com', 'prueba de que funcione mi formulario'),
+(3, 'a', 'a', 'sergiovallejo1992@gmail.com', 'prueba de que funcione mi formulario'),
+(4, 'a', 'a', 'sergiovallejo1992@gmail.com', 'prueba de mi formulario'),
+(5, 'a', 'a', 'sergiovallejo1992@gmail.com', 'prueba de mi formulario'),
+(6, 'a', 'a', 'sergiovallejo1992@gmail.com', 'asasa'),
+(7, 'a', 'a', 'sergiovallejo1992@gmail.com', 'asasa'),
+(8, 'a', 'a', 'sergiovallejo1992@gmail.com', 'asasa'),
+(9, 'a', 'a', 'sergiovallejo1992@gmail.com', 'asasa'),
+(10, 'salmon', 'jaime', 'sergio_curso_marbella@hotmail.com', 'esto es estopa'),
+(11, 'salmon', 'jaime', 'sergio_curso_marbella@hotmail.com', 'esto es estopa'),
+(12, 'salmon', 'jaime', 'sergio_curso_marbella@hotmail.com', 'esto es estopa'),
+(13, 'calamar', 'calamar', 'sergio_curso_marbella@hotmail.com', 'calamares'),
+(14, 'klsajflksadf', 'calamar', 'sergio_curso_marbella@hotmail.com', 'sdgsadgsad'),
+(15, 'klsajflksadf', 'calamar', 'sergio_curso_marbella@hotmail.com', 'sdgsadgsad'),
+(16, 'kooo', 'aaa', 'sergiovallejo1992@gmail.com', 'aaaaaaaaaaaaaa'),
+(17, 'asjfsakjfsadfsdafsadfgsad', 'asdfgsadfasd', 'sdfsad@h.com', 'llllllñ'),
+(18, 'asjfsakjfsadfsdafsadfgsad', 'asdfgsadfasd', 'sdfsad@h.com', 'llllllñ'),
+(19, 'asjfsakjfsadfsdafsadfgsad', 'asdfgsadfasd', 'sdfsad@h.com', 'llllllñ'),
+(20, 'ñ', 'ñ', 'sdfsad@h.com', 'ñ'),
+(21, 'ñ', 'ñ', 'sdfsad@h.com', 'ñ'),
+(22, 'fdg', 'fdg', 'sdfsad@h.com', 'dfgd'),
+(23, 'fdg', 'fdg', 'sdfsad@h.com', 'dfgd'),
+(24, 'fdg', 'fdg', 'sdfsad@h.com', 'dfgd'),
+(25, 'sasasasa', 'asas', 'sergio_curso_marbella@hotmail.com', 'asasa'),
+(26, 'looooo', 'asa', 'asa@hotmail.com', 'aaaa'),
+(27, 'pepe', 'pepe', 'pepe@pepe.com', 'pepepepepe'),
+(28, 'raul', 'raul', 'sergio_curso_marbella@hotmail.com', 'mensaje prueba contacto'),
+(29, 'kasjfkljsdaklgjdslkfjghlkfdsjklgfdsag', 'dsgdsfgdsfg', 'pepe@pepe.com', 'jasdagdsafjlgfdsjkglfdsag'),
+(30, 'ooooooooooooooooooooooooooo', 'fds', 'pepe@pepe.com', 'oooooooooooooooooooooooooooooooo'),
+(31, 'pppppppppppppppppppppppp', 'ppppppppppppp', 'sergio_curso_marbella@hotmail.com', 'pppppppppppppppppppp'),
+(32, 'ooooooooooooooooooooooooooo', 'fds', 'pepe@pepe.com', 'oooooooooooooooooooo'),
+(33, 'ffffffffffffffffff', 'ffffffffffffff', 'sergio_curso_marbella@hotmail.com', 'oooooooooooooooooooooo'),
+(34, 'pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp', 'g', 'sergio_curso_marbella@hotmail.com', 'ppppppppppppppppppppppp'),
+(35, 'AAAAAA', 'AAAA', 'jsahfkjsah@hotmail.com', 'sadfsafsdafdsa');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tienda`
 --
 
@@ -317,7 +372,9 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `email`, `telefono`, `nombr
 (30, 'Yuna', 'Yuna', 'Yuna@mail.com', 12345, 'yuna', '$2y$10$dM1MyF4zeBIj1e0B2G9xDO4pTE8lwQ5vEeNnac6IFehdQHPpMqbr6'),
 (31, 'asdfsdafs', 'sdfsadf', 'sdfsad@h.com', 6, 'pp', '$2y$10$0NiUI9cpV7uckpTo7fyUfOc9QUI/vpZUctYOeywjWHshnbaCYlXl.'),
 (32, 'elmejor', 'a', 'sdfsad@h.com', 6, 'elmejor', '$2y$10$Sn8Xjj10fBRF183p/qtkAOjFqPOYSPaOg2BeqnGFqUZ/B9f.wxi1O'),
-(33, 'ppp', 'g', 'sergio_curso_marbella@hotmail.com', 6, 'ppp', '$2y$10$9iv/Fk1lm9NwXO7cNPOvh.8jol3Rf8McrZDCiJV4rJMAhl5zx952a');
+(33, 'ppp', 'g', 'sergio_curso_marbella@hotmail.com', 6, 'ppp', '$2y$10$9iv/Fk1lm9NwXO7cNPOvh.8jol3Rf8McrZDCiJV4rJMAhl5zx952a'),
+(34, 'a', 'a', 'as@hotmail.com', 6, 'a', '$2y$10$JqK/0shYVq4y0S4of84ux.GIIF.pw6DRPl99ZMmJ79zQblYGqk5W6'),
+(35, 'homer', 'simpson', 'homer@evergreenterrace.com', 6, 'home J.S', '$2y$10$8keZIA1KXM5MdIIu0YywDuwotmIK43kVUqAERyYTVX0CSjHvpXHp6');
 
 --
 -- Índices para tablas volcadas
@@ -356,6 +413,12 @@ ALTER TABLE `personajes_familias`
   ADD KEY `familia_id` (`familia_id`);
 
 --
+-- Indices de la tabla `send`
+--
+ALTER TABLE `send`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `tienda`
 --
 ALTER TABLE `tienda`
@@ -375,7 +438,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `articulos_tienda`
@@ -396,16 +459,22 @@ ALTER TABLE `personajes_familias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
+-- AUTO_INCREMENT de la tabla `send`
+--
+ALTER TABLE `send`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
 -- AUTO_INCREMENT de la tabla `tienda`
 --
 ALTER TABLE `tienda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Restricciones para tablas volcadas
